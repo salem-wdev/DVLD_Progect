@@ -31,6 +31,7 @@ namespace DVLD.Users.Controls
 
         public void LoadUserInfo(int UserID)
         {
+            _UserID = UserID;
             _User = clsUser.Find(UserID);
 
             if (_User == null)
