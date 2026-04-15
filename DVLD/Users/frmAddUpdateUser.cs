@@ -94,26 +94,6 @@ namespace DVLD.Users
 
         }
 
-        private void _Save()
-        {
-
-            _FillUserWithData();
-
-            if(_User.Save())
-            {
-                _Mode = enMode.Update;
-                MessageBox.Show("Saved sauccessfuly", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                _ResetValues();
-                lblTitle.Text = "Update User";
-            }
-            else
-            {
-                MessageBox.Show("Save faild!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-                   
-            
-        }
-
         private bool _IsPersonUser()
         {
 
@@ -266,7 +246,19 @@ namespace DVLD.Users
                 return;
             }
 
-            _Save();
+            _FillUserWithData();
+
+            if (_User.Save())
+            {
+                _Mode = enMode.Update;
+                MessageBox.Show("Saved sauccessfuly", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _ResetValues();
+                lblTitle.Text = "Update User";
+            }
+            else
+            {
+                MessageBox.Show("Save faild!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             txtPassword.Focus();
 
