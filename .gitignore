@@ -1,0 +1,45 @@
+# === Visual Studio Essential Ignores ===
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Gg]enerated/
+
+# User-specific files (Visual Studio)
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio 2015+ cache directory
+.vs/
+
+# === Integrated Databases (If any) ===
+*.mdf
+*.ldf
+*.ndf
+
+# === NuGet Packages ===
+# Usually, we don't commit the packages folder itself
+packages/*
+# But we keep the folder and a placeholder if needed
+!packages/repositories.config
+*.nuget.props
+*.nuget.targets
+
+# === Unit Test Results ===
+TestResults/
+*.trx
+*.vstest
+
+# === Operating System Files ===
+# Windows
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+
+# === Log Files ===
+*.log
+*.tlog
