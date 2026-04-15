@@ -167,36 +167,18 @@ namespace DVLD.Users
 
         private void CtrlPersonCardWithFilter1_OnPersonSelected(int PersonID)
         {
-            
-
-            if (_Mode == enMode.AddNew && _IsPersonUser())
-            {
-                MessageBox.Show("Person already is a User", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                btnNext.Enabled = false;
-                btnSave.Enabled = false;
-                return;
-            }
-            else
-            {
-                btnNext.Enabled = true;
-            }
-
 
             if (!_IsPersonUser())
             {
                 tpLoginInfo.Enabled = true;
+                return;
             }
 
-            if(_IsbtnSaveReadyToEnable())
-            {
-                btnSave.Enabled = true;
-            }
-            else
-            {
-                btnSave.Enabled = false;
-            }
+            _User.PersonID = PersonID;
 
-            _User.PersonInfo = clsPerson.Find(PersonID);
+            btnSave.Enabled = _IsbtnSaveReadyToEnable();
+           
+
         }
 
         private void btnNext_Click(object sender, EventArgs e)
