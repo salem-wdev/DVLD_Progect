@@ -13,32 +13,56 @@ namespace DVLD.Users.Controls
 {
     public partial class ctrlUserCard : UserControl
     {
+
+        private clsUser _User;
+
+        private int _UserID;
+
+        public int UserID
+        {
+            get { return _UserID; }
+        }
+
         public ctrlUserCard()
         {
             InitializeComponent();
         }
 
-        public clsUser User;
 
         public void LoadUserInfo(int UserID)
         {
-            if ((User = clsUser.Find(UserID)) != null)
+            _UserID = UserID;
+            _User = clsUser.Find(UserID);
+
+            if (_User == null)
             {
-                ctrlPersonCard1.LoadData(User.PersonID);
-                lblUserID.Text = User.UserID.ToString();
-                lblUserName.Text = User.UserName;
-                lblIsActive.Text = (User.IsActive) ? "Active" : "Inactive";
+                _ResetInfo();
+                MessageBox.Show("No User with UserID = " + UserID.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            _FillUserInfo();
         }
 
-        private void ctrlUserCard_Load(object sender, EventArgs e)
+        private void _ResetInfo()
         {
+            ctrlPersonCard1.ResetPersonInfo();
 
+            _UserID = -1;
+
+            lblUserID.Text = "???";
+            lblUserName.Text = "???";
+            lblUserID.Text = "???";
         }
 
-        private void gbUserInfo_Enter(object sender, EventArgs e)
+        private void _FillUserInfo()
         {
+            ctrlPersonCard1.LoadData(_User.PersonID);
+            lblUserID.Text = _User.UserID.ToString();
+            lblUserName.Text = _User.UserName;
+            lblIsActive.Text = (_User.IsActive) ? "Active" : "Inactive";
 
         }
+
     }
 }

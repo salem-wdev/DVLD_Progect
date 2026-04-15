@@ -61,7 +61,6 @@
             this.gbUserInfo.TabIndex = 1;
             this.gbUserInfo.TabStop = false;
             this.gbUserInfo.Text = "Login Information";
-            this.gbUserInfo.Enter += new System.EventHandler(this.gbUserInfo_Enter);
             // 
             // lblIsActive
             // 
@@ -137,7 +136,6 @@
             this.Controls.Add(this.ctrlPersonCard1);
             this.Name = "ctrlUserCard";
             this.Size = new System.Drawing.Size(847, 397);
-            this.Load += new System.EventHandler(this.ctrlUserCard_Load);
             this.gbUserInfo.ResumeLayout(false);
             this.gbUserInfo.PerformLayout();
             this.ResumeLayout(false);
