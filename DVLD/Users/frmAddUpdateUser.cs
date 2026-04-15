@@ -201,16 +201,38 @@ namespace DVLD.Users
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            // check is person is a user if mode is add new
-            if (_Mode == enMode.AddNew && _IsPersonUser())
+            if (_Mode == enMode.Update)
             {
-                MessageBox.Show("Person already is a User", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                btnNext.Enabled = false;
+                btnSave.Enabled = true;
+                tpLoginInfo.Enabled = true;
+                tcInfo.SelectedTab = tcInfo.TabPages["tpLoginInfo"];
                 return;
             }
 
+            if (ctrlPersonCardWithFilter1.PersonID > 0)
+            {
+                // check is person is a user
+                if (_IsPersonUser())
+                {
+                    MessageBox.Show("Person already is a User", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnNext.Enabled = false;
+                    return;
+                }
+                else
+                {
+                    btnSave.Enabled = true;
+                    tpLoginInfo.Enabled = true;
+                    tcInfo.SelectedTab = tcInfo.TabPages["tpLoginInfo"];
+                }
+            }
+            else
 
-            tcInfo.SelectedIndex = tcInfo.SelectedIndex + 1;
+            {
+                MessageBox.Show("Please Select a Person", "Select a Person", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ctrlPersonCardWithFilter1.gbFilters.Focus();
+
+            }
+
         }
 
         private void User_Validating(object sender, CancelEventArgs e)
