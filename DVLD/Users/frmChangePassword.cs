@@ -90,15 +90,16 @@ namespace DVLD.Users
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (_User.Password != txtCurrentPassword.Text)
-            {
-                MessageBox.Show("Current password is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             if (!this.ValidateChildren())
             {
                 MessageBox.Show("Please fill in all fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            if (_User.Password != txtCurrentPassword.Text)
+            {
+                MessageBox.Show("Current password is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
