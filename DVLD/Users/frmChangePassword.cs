@@ -23,7 +23,7 @@ namespace DVLD.Users
 
         private bool _IsPasswordReadyToSave()
         {
-            if (ctrlUserCard1.User == null)
+            if (ctrlUserCard1._User == null)
             {
                 return false;
             }
