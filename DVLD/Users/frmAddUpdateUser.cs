@@ -77,6 +77,7 @@ namespace DVLD.Users
                 return;
             }
 
+            btnNext.Enabled = true;
             lblUserID.Text = _User.UserID.ToString();
             txtUserName.Text = _User.UserName;
             txtPassword.Text = _User.Password;
@@ -139,12 +140,14 @@ namespace DVLD.Users
         private void CtrlPersonCardWithFilter1_OnPersonSelected(int PersonID)
         {
 
-            if (!_IsPersonUser())
+            if (_IsPersonUser())
             {
-                tpLoginInfo.Enabled = true;
+                MessageBox.Show("Person already is a User", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
+            tpLoginInfo.Enabled = true;
+            btnNext.Enabled = true;
 
             if (_User != null)
             {
@@ -239,13 +242,14 @@ namespace DVLD.Users
             _User.UserName = txtUserName.Text;
             _User.Password = txtPassword.Text;
             _User.IsActive = chkIsActive.Checked;
-            _User.PersonID = ctrlPersonCardWithFilter1.PersonID
+            _User.PersonID = ctrlPersonCardWithFilter1.PersonID;
 
             if (_User.Save())
             {
                 _Mode = enMode.Update;
                 MessageBox.Show("Saved successfully", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lblTitle.Text = "Update User";
+                this.Text = "Update User";
             }
             else
             {
