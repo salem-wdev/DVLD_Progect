@@ -15,6 +15,11 @@ namespace DVLD.Users
 {
     public partial class frmChangePassword : Form
     {
+
+        private int _UserID;
+
+        private clsUser User;
+
         public frmChangePassword(int UserID)
         {
             InitializeComponent();
@@ -23,7 +28,7 @@ namespace DVLD.Users
 
         private bool _IsPasswordReadyToSave()
         {
-            if (ctrlUserCard1._User == null)
+            if (ctrlUserCard1.UserID <= 0)
             {
                 return false;
             }
