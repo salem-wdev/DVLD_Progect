@@ -74,6 +74,26 @@ namespace DVLD.Users
             _User.PersonInfo = clsPerson.Find(ctrlPersonCardWithFilter1.PersonID);
         }
 
+        private void _LoadData()
+        {
+            _User = clsUser.Find(_UserID);
+            ctrlPersonCardWithFilter1.gbFilters.Enabled = false;
+
+            if (_User == null)
+            {
+                MessageBox.Show("User not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
+
+            lblUserID.Text = _User.UserID.ToString();
+            txtUserName.Text = _User.UserName;
+            txtPassword.Text = _User.Password;
+            chkIsActive.Checked = _User.IsActive;
+            ctrlPersonCardWithFilter1.LoadPersonInfo(_User.PersonID);
+
+        }
+
         private void _Save()
         {
 
@@ -129,6 +149,13 @@ namespace DVLD.Users
 
         private void frmAddUpdateUser_Load(object sender, EventArgs e)
         {
+            _ResetValues();
+
+            if(_Mode == enMode.Update)
+            {
+                _LoadData();
+            }
+
             ctrlPersonCardWithFilter1.OnPersonSelected += CtrlPersonCardWithFilter1_OnPersonSelected;
         }
 
