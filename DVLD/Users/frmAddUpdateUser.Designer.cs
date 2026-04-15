@@ -48,7 +48,7 @@
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnClose = new System.Windows.Forms.Button();
-            this.lblAddUpdateUser = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tcInfo.SuspendLayout();
@@ -291,16 +291,16 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // lblAddUpdateUser
+            // lblTitle
             // 
-            this.lblAddUpdateUser.AutoSize = true;
-            this.lblAddUpdateUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddUpdateUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblAddUpdateUser.Location = new System.Drawing.Point(323, 42);
-            this.lblAddUpdateUser.Name = "lblAddUpdateUser";
-            this.lblAddUpdateUser.Size = new System.Drawing.Size(201, 31);
-            this.lblAddUpdateUser.TabIndex = 1;
-            this.lblAddUpdateUser.Text = "Add New User";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblTitle.Location = new System.Drawing.Point(323, 42);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(201, 31);
+            this.lblTitle.TabIndex = 1;
+            this.lblTitle.Text = "Add New User";
             // 
             // btnSave
             // 
@@ -331,7 +331,7 @@
             this.ClientSize = new System.Drawing.Size(870, 625);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.lblAddUpdateUser);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.tcInfo);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -358,7 +358,7 @@
         private System.Windows.Forms.TabPage tpPesronInfo;
         private People.Controls.ctrlPersonCardWithFilter ctrlPersonCardWithFilter1;
         private System.Windows.Forms.TabPage tpLoginInfo;
-        private System.Windows.Forms.Label lblAddUpdateUser;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnSave;

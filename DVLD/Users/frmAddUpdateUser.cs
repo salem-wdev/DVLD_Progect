@@ -25,39 +25,44 @@ namespace DVLD.Users
         {
             InitializeComponent();
             _Mode = enMode.AddNew;
-            _User = new clsUser();
-            tpLoginInfo.Enabled = false;
         }
 
         public frmAddUpdateUser(int UserID)
         {
             InitializeComponent();
             _Mode = enMode.Update;
-            if ((_User = clsUser.Find(UserID)) != null)
-            {
-                ctrlPersonCardWithFilter1.LoadPersonInfo(_User.PersonID);
-                txtUserName.Text = _User.UserName;
-                chkIsActive.Checked = _User.IsActive;
-            }
-            else
-            {
-                MessageBox.Show("User not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-            }
-
-            tcInfo.SelectedIndex = 1;
-            tpPesronInfo.Enabled = true;
-            ctrlPersonCardWithFilter1.gbFilters.Enabled = false;
-            btnNext.Enabled = false;
-            txtUserName.Enabled = false;
-            lblAddUpdateUser.Text = "Update User";
-
+            _UserID = UserID;
         }
 
         private void _ResetValues()
         {
-            txtConfirmPassword.Text = string.Empty;
-            txtPassword.Text = string.Empty;
+            //this will initialize the reset the defaule values
+
+            if (_Mode == enMode.AddNew)
+            {
+                lblTitle.Text = "Add New User";
+                this.Text = "Add New User";
+                _User = new clsUser();
+
+                tpLoginInfo.Enabled = false;
+
+                ctrlPersonCardWithFilter1.gbFilters.Focus();
+            }
+            else
+            {
+                lblTitle.Text = "Update User";
+                this.Text = "Update User";
+
+                tpLoginInfo.Enabled = true;
+                btnSave.Enabled = true;
+
+
+            }
+
+            txtUserName.Text = "";
+            txtPassword.Text = "";
+            txtConfirmPassword.Text = "";
+            chkIsActive.Checked = true;
         }
 
         private void _FillUserWithData()
@@ -79,7 +84,7 @@ namespace DVLD.Users
                 _Mode = enMode.Update;
                 MessageBox.Show("Saved sauccessfuly", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _ResetValues();
-                lblAddUpdateUser.Text = "Update User";
+                lblTitle.Text = "Update User";
             }
             else
             {
