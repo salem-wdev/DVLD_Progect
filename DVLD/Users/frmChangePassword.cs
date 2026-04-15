@@ -23,7 +23,7 @@ namespace DVLD.Users
         public frmChangePassword(int UserID)
         {
             InitializeComponent();
-            ctrlUserCard1.LoadUserInfo(UserID);
+            _UserID = UserID;
         }
 
         private void _ResetDefualtValues()
@@ -62,7 +62,18 @@ namespace DVLD.Users
 
         private void frmChangePassword_Load(object sender, EventArgs e)
         {
+            _ResetDefualtValues();
 
+            _User = clsUser.Find(_UserID);
+
+            if(_User == null)
+            {
+                MessageBox.Show("User not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
+
+            ctrlUserCard1.LoadUserInfo(_UserID);
         }
 
         private void Password_TextChanged(object sender, EventArgs e)
@@ -79,7 +90,7 @@ namespace DVLD.Users
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (ctrlUserCard1.User.Password != txtCurrentPassword.Text)
+            if (_User.Password != txtCurrentPassword.Text)
             {
                 MessageBox.Show("Current password is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -98,9 +109,9 @@ namespace DVLD.Users
                 return;
             }
 
-            ctrlUserCard1.User.Password = txtNewPassword.Text;
+            _User.Password = txtNewPassword.Text;
 
-            if (clsUser.ChangePassword(ctrlUserCard1.User.UserID, txtNewPassword.Text))
+            if (clsUser.ChangePassword(_User.UserID, txtNewPassword.Text))
             {
                 MessageBox.Show("Password changed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
@@ -115,19 +126,22 @@ namespace DVLD.Users
         {
             TextBox text = sender as TextBox;
 
-            if (clsGlobal.CurrentUser.Password != txtCurrentPassword.Text)
-            {
-                errorProvider1.SetError(text, $"{text.Tag} is incorrect.");
-                return;
-            }
-
-            if (text.Text == string.Empty)
+            if (string.IsNullOrWhiteSpace(text.Text.Trim()))
             {
                 errorProvider1.SetError(text, $"{text.Tag} is required.");
+                e.Cancel = true;
             }
             else
             {
                 errorProvider1.SetError(text, string.Empty);
+                e.Cancel = true;
+            }
+
+            if (clsGlobal.CurrentUser.Password != txtCurrentPassword.Text)
+            {
+                errorProvider1.SetError(text, $"{text.Tag} is incorrect.");
+                e.Cancel = true;
+                return;
             }
         }
 
