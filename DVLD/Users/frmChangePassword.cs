@@ -18,7 +18,7 @@ namespace DVLD.Users
 
         private int _UserID;
 
-        private clsUser User;
+        private clsUser _User;
 
         public frmChangePassword(int UserID)
         {
@@ -26,9 +26,18 @@ namespace DVLD.Users
             ctrlUserCard1.LoadUserInfo(UserID);
         }
 
+        private void _ResetDefualtValues()
+        {
+            txtCurrentPassword.Text = "";
+            txtNewPassword.Text = "";
+            txtConfirmPassword.Text = "";
+            txtCurrentPassword.Focus();
+        }
+
+
         private bool _IsPasswordReadyToSave()
         {
-            if (ctrlUserCard1.UserID <= 0)
+            if (_User == null)
             {
                 return false;
             }
