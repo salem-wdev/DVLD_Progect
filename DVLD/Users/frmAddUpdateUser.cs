@@ -65,15 +65,6 @@ namespace DVLD.Users
             chkIsActive.Checked = true;
         }
 
-        private void _FillUserWithData()
-        {
-            _User.UserName = txtUserName.Text;
-            _User.Password = txtPassword.Text;
-            _User.IsActive = chkIsActive.Checked;
-
-            _User.PersonInfo = clsPerson.Find(ctrlPersonCardWithFilter1.PersonID);
-        }
-
         private void _LoadData()
         {
             _User = clsUser.Find(_UserID);
@@ -212,24 +203,11 @@ namespace DVLD.Users
 
         private void User_TextChanged(object sender, EventArgs e)
         {
-            if (_IsbtnSaveReadyToEnable())
-            {
-                btnSave.Enabled = true;
-            }
-            else
-            {
-                btnSave.Enabled = false;
-            }
+            btnSave.Enabled = _IsbtnSaveReadyToEnable();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //if (_IsPersonUser())
-            //{
-            //    MessageBox.Show("Person already is a User", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    return;
-            //}
-
             // check if password and confirm password match
             if (txtPassword.Text != txtConfirmPassword.Text)
             {
@@ -246,7 +224,9 @@ namespace DVLD.Users
                 return;
             }
 
-            _FillUserWithData();
+            _User.UserName = txtUserName.Text;
+            _User.Password = txtPassword.Text;
+            _User.IsActive = chkIsActive.Checked;
 
             if (_User.Save())
             {
