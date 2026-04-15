@@ -200,6 +200,7 @@ namespace DVLD.Users
             if (text.Text== string.Empty)
             {
                 errorProvider1.SetError(text, $"{text?.Tag.ToString()} is Required");
+                e.Cancel = true;
             }
 
             
@@ -237,7 +238,6 @@ namespace DVLD.Users
             {
                 _Mode = enMode.Update;
                 MessageBox.Show("Saved successfully", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                _ResetValues();
                 lblTitle.Text = "Update User";
             }
             else
