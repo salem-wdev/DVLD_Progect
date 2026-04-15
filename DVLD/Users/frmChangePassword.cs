@@ -78,14 +78,7 @@ namespace DVLD.Users
 
         private void Password_TextChanged(object sender, EventArgs e)
         {
-            if (_IsPasswordReadyToSave())
-            {
-                btnSave.Enabled = true;
-            }
-            else
-            {
-                btnSave.Enabled = false;
-            }
+            btnSave.Enabled = _IsPasswordReadyToSave();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
