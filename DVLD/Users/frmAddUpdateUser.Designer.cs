@@ -185,7 +185,7 @@
             this.txtUserName.TabIndex = 2;
             this.txtUserName.Tag = "UserName";
             this.txtUserName.TextChanged += new System.EventHandler(this.User_TextChanged);
-            this.txtUserName.Validating += new System.ComponentModel.CancelEventHandler(this.User_Validating);
+            this.txtUserName.Validating += new System.ComponentModel.CancelEventHandler(this.txtUserName_Validating);
             // 
             // txtConfirmPassword
             // 
@@ -198,7 +198,7 @@
             this.txtConfirmPassword.TabIndex = 4;
             this.txtConfirmPassword.Tag = "Confirmation Password";
             this.txtConfirmPassword.TextChanged += new System.EventHandler(this.User_TextChanged);
-            this.txtConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.User_Validating);
+            this.txtConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.Password_Validating);
             // 
             // label2
             // 
@@ -244,7 +244,7 @@
             this.txtPassword.TabIndex = 3;
             this.txtPassword.Tag = "PassWord";
             this.txtPassword.TextChanged += new System.EventHandler(this.User_TextChanged);
-            this.txtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.User_Validating);
+            this.txtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.Password_Validating);
             // 
             // pictureBox1
             // 

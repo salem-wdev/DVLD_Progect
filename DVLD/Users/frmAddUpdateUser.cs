@@ -196,7 +196,7 @@ namespace DVLD.Users
 
         }
 
-        private void User_Validating(object sender, CancelEventArgs e)
+        private void Password_Validating(object sender, CancelEventArgs e)
         {
             TextBox text = (TextBox)sender;
 
@@ -259,5 +259,39 @@ namespace DVLD.Users
             txtPassword.Focus();
 
         }
+
+        private void txtUserName_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox text = (TextBox)sender;
+            string currentinput = text.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(currentinput))
+            {
+                errorProvider1.SetError(text, $"{text?.Tag.ToString()} is Required");
+                e.Cancel = true;
+                return;
+            }
+
+            clsUser user = clsUser.Find(currentinput);
+
+            if(user != null)
+            {
+                if (_Mode == enMode.Update && user.UserID == _User.UserID)
+                {
+                    errorProvider1.SetError(text, string.Empty);
+                    e.Cancel = false;
+                    return;
+                }
+
+                errorProvider1.SetError(text, $"{text?.Tag.ToString()} is Already Taken");
+                e.Cancel = true;
+                return;
+            }
+
+            errorProvider1.SetError(text, string.Empty);
+            e.Cancel = false;
+
+        }
+    
     }
 }
