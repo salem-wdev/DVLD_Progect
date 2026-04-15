@@ -214,6 +214,12 @@ namespace DVLD.Users
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if(!this.ValidateChildren())
+            {
+                MessageBox.Show("Please fix validation errors", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             // check if password and confirm password match
             if (txtPassword.Text != txtConfirmPassword.Text)
             {
@@ -233,6 +239,7 @@ namespace DVLD.Users
             _User.UserName = txtUserName.Text;
             _User.Password = txtPassword.Text;
             _User.IsActive = chkIsActive.Checked;
+            _User.PersonID = ctrlPersonCardWithFilter1.PersonID
 
             if (_User.Save())
             {
@@ -242,7 +249,7 @@ namespace DVLD.Users
             }
             else
             {
-                MessageBox.Show("Save faild!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Save failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             txtPassword.Focus();
