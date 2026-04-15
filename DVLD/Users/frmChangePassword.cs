@@ -128,7 +128,7 @@ namespace DVLD.Users
             else
             {
                 errorProvider1.SetError(text, string.Empty);
-                e.Cancel = true;
+                e.Cancel = false;
             }
 
             if (clsGlobal.CurrentUser.Password != txtCurrentPassword.Text)
@@ -146,10 +146,12 @@ namespace DVLD.Users
             if (text.Text == string.Empty)
             {
                 errorProvider1.SetError(text, $"{text.Tag} is required.");
+                e.Cancel = true;
             }
             else
             {
                 errorProvider1.SetError(text, string.Empty);
+                e.Cancel = false;
             }
         }
     }
