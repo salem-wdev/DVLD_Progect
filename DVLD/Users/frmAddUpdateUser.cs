@@ -145,7 +145,12 @@ namespace DVLD.Users
                 return;
             }
 
-            _User.PersonID = PersonID;
+
+            if (_User != null)
+            {
+                _User.PersonID = PersonID;
+            }
+
 
             btnSave.Enabled = _IsbtnSaveReadyToEnable();
            
