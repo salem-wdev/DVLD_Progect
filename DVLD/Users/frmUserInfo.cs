@@ -12,13 +12,15 @@ namespace DVLD.Users
 {
     public partial class frmUserInfo : Form
     {
+
+        private int _UserID;
+
         public frmUserInfo(int UserID)
         {
             InitializeComponent();
+            _UserID = UserID;
             ctrlUserCard1.LoadUserInfo(UserID);
         }
-
-
 
         private void frmShowUserInfo_Load(object sender, EventArgs e)
         {
