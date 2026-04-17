@@ -28,16 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlUserCard1 = new DVLD.Users.Controls.ctrlUserCard();
             this.btnClose = new System.Windows.Forms.Button();
+            this.ctrlUserCard1 = new DVLD.Users.Controls.ctrlUserCard();
             this.SuspendLayout();
-            // 
-            // ctrlUserCard1
-            // 
-            this.ctrlUserCard1.Location = new System.Drawing.Point(12, 12);
-            this.ctrlUserCard1.Name = "ctrlUserCard1";
-            this.ctrlUserCard1.Size = new System.Drawing.Size(847, 397);
-            this.ctrlUserCard1.TabIndex = 0;
             // 
             // btnClose
             // 
@@ -55,11 +48,19 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // ctrlUserCard1
+            // 
+            this.ctrlUserCard1.Location = new System.Drawing.Point(12, 12);
+            this.ctrlUserCard1.Name = "ctrlUserCard1";
+            this.ctrlUserCard1.Size = new System.Drawing.Size(847, 397);
+            this.ctrlUserCard1.TabIndex = 0;
+            // 
             // frmShowUserInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(875, 468);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ctrlUserCard1);
