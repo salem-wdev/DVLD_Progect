@@ -19,11 +19,11 @@ namespace DVLD.Users
         {
             InitializeComponent();
             _UserID = UserID;
-            ctrlUserCard1.LoadUserInfo(UserID);
         }
 
         private void frmShowUserInfo_Load(object sender, EventArgs e)
         {
+            ctrlUserCard1.LoadUserInfo(_UserID);
 
         }
 
