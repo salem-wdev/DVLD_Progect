@@ -131,7 +131,7 @@ namespace DVLD.Users
                 e.Cancel = false;
             }
 
-            if (clsGlobal.CurrentUser.Password != txtCurrentPassword.Text)
+            if (this._User.Password != txtCurrentPassword.Text)
             {
                 errorProvider1.SetError(text, $"{text.Tag} is incorrect.");
                 e.Cancel = true;
