@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DVLD.Users
 {
-    public partial class frmShowUserInfo : Form
+    public partial class frmUserInfo : Form
     {
-        public frmShowUserInfo(int UserID)
+        public frmUserInfo(int UserID)
         {
             InitializeComponent();
             ctrlUserCard1.LoadUserInfo(UserID);
