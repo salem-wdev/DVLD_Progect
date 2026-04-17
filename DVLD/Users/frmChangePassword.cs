@@ -143,7 +143,7 @@ namespace DVLD.Users
         {
             TextBox text = sender as TextBox;
 
-            if (text.Text == string.Empty)
+            if (string.IsNullOrWhiteSpace(text.Text.Trim()))
             {
                 errorProvider1.SetError(text, $"{text.Tag} is required.");
                 e.Cancel = true;
