@@ -39,7 +39,7 @@
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Image = global::DVLD.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(733, 417);
+            this.btnClose.Location = new System.Drawing.Point(725, 417);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(126, 37);
@@ -61,7 +61,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(875, 468);
+            this.ClientSize = new System.Drawing.Size(864, 468);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ctrlUserCard1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
