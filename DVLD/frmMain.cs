@@ -81,7 +81,7 @@ namespace DVLD
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            LoginForm.Close();
+            Application.Exit();
         }
     }
 }

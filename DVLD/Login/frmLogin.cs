@@ -61,7 +61,7 @@ namespace DVLD
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
@@ -75,6 +75,11 @@ namespace DVLD
                 chkRememberMe.Checked = true;
             }
 
+        }
+
+        private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
