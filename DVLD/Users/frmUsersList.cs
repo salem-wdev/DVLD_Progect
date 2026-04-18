@@ -14,7 +14,7 @@ namespace DVLD.Users
 {
     public partial class frmUsersList : Form
     {
-        private static DataTable dtUsers;
+        private static DataTable _dtAllUsers;
         private void _RefreshRecordsNumber()
         {
             lblRecord.Text = dgvUsers.Rows.Count.ToString();
@@ -22,8 +22,8 @@ namespace DVLD.Users
 
         private void _RefreshUsersList()
         {
-            dtUsers = clsUser.GetAllUsers();
-            dgvUsers.DataSource = dtUsers;
+            _dtAllUsers = clsUser.GetAllUsers();
+            dgvUsers.DataSource = _dtAllUsers;
             _RefreshRecordsNumber();
         }
 
@@ -87,13 +87,13 @@ namespace DVLD.Users
             switch (cbIsActive.SelectedItem)
             {
                 case "All":
-                    dtUsers.DefaultView.RowFilter = string.Empty;
+                    _dtAllUsers.DefaultView.RowFilter = string.Empty;
                     break;
                 case "Yes":
-                    dtUsers.DefaultView.RowFilter = "IsActive = true";
+                    _dtAllUsers.DefaultView.RowFilter = "IsActive = true";
                     break;
                 case "No":
-                    dtUsers.DefaultView.RowFilter = "IsActive = false";
+                    _dtAllUsers.DefaultView.RowFilter = "IsActive = false";
                     break;
             }
 
@@ -136,26 +136,26 @@ namespace DVLD.Users
 
             if (txtFilter.Text.ToString().Trim() == string.Empty)
             {
-                dtUsers.DefaultView.RowFilter = string.Empty;
+                _dtAllUsers.DefaultView.RowFilter = string.Empty;
                 _RefreshRecordsNumber();
                 return;
             }
 
             if (cbFilter.SelectedItem.ToString() == "User ID" || cbFilter.SelectedItem.ToString() == "Person ID")
             {
-                dtUsers.DefaultView.RowFilter = $"{SelectedString} = {txtFilter.Text.ToString()}";
+                _dtAllUsers.DefaultView.RowFilter = $"{SelectedString} = {txtFilter.Text.ToString()}";
                 _RefreshRecordsNumber();
                 return;
             }
 
             if (cbFilter.SelectedItem.ToString() == "UserName")
             {
-                dtUsers.DefaultView.RowFilter = $"{SelectedString} LIKE '{txtFilter.Text.ToString().Trim()}%'";
+                _dtAllUsers.DefaultView.RowFilter = $"{SelectedString} LIKE '{txtFilter.Text.ToString().Trim()}%'";
                 _RefreshRecordsNumber();
                 return;
             }
 
-            dtUsers.DefaultView.RowFilter = $"{SelectedString} LIKE '%{txtFilter.Text.ToString().Trim()}%'";
+            _dtAllUsers.DefaultView.RowFilter = $"{SelectedString} LIKE '%{txtFilter.Text.ToString().Trim()}%'";
 
             _RefreshRecordsNumber();
 
