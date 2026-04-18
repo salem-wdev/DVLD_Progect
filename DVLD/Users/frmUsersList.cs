@@ -62,26 +62,27 @@ namespace DVLD.Users
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbIsActive.Visible = false;
+            cbIsActive.SelectedIndex = 0;
+            txtFilter.Text = string.Empty;
+            txtFilter.Visible = false;
+
 
             if (cbFilter.SelectedItem.ToString() == "None")
             {
-                cbIsActive.Visible = false;
-                cbIsActive.SelectedIndex = 0;
-                txtFilter.Text = string.Empty;
-                txtFilter.Visible = false;
+               
                 return;
             }
 
             if (cbFilter.SelectedItem.ToString() == "Is Active")
             {
                 cbIsActive.Visible = true;
-                txtFilter.Visible = false;
-                txtFilter.Text = string.Empty;
+                cbFilter.Focus();
                 return;
             }
 
             txtFilter.Visible = true;
             txtFilter.Text = string.Empty;
+            txtFilter.Focus();
 
 
         }
