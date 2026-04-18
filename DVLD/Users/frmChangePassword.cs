@@ -124,6 +124,7 @@ namespace DVLD.Users
             {
                 errorProvider1.SetError(text, $"{text.Tag} is required.");
                 e.Cancel = true;
+                return;
             }
             else
             {
@@ -135,7 +136,6 @@ namespace DVLD.Users
             {
                 errorProvider1.SetError(text, $"{text.Tag} is incorrect.");
                 e.Cancel = true;
-                return;
             }
         }
 
