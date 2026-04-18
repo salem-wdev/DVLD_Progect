@@ -14,7 +14,7 @@ namespace DVLD.Users
 {
     public partial class frmUsersList : Form
     {
-        DataTable dtUsers;
+        private static DataTable dtUsers;
         private void _RefreshRecordsNumber()
         {
             lblRecord.Text = dgvUsers.Rows.Count.ToString();
