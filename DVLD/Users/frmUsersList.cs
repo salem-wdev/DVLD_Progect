@@ -39,20 +39,24 @@ namespace DVLD.Users
             cbFilter.SelectedIndex = 0;
             cbIsActive.SelectedIndex = 0;
 
-            dgvUsers.Columns[0].HeaderText = "User ID";
-            dgvUsers.Columns[0].Width = 110;
+            if (dgvUsers.Columns.Count > 0)
+            {
+                dgvUsers.Columns[0].HeaderText = "User ID";
+                dgvUsers.Columns[0].Width = 110;
 
-            dgvUsers.Columns[1].HeaderText = "Person ID";
-            dgvUsers.Columns[1].Width = 120;
+                dgvUsers.Columns[1].HeaderText = "Person ID";
+                dgvUsers.Columns[1].Width = 120;
 
-            dgvUsers.Columns[2].HeaderText = "Full Name";
-            dgvUsers.Columns[2].Width = 350;
+                dgvUsers.Columns[2].HeaderText = "Full Name";
+                dgvUsers.Columns[2].Width = 350;
 
-            dgvUsers.Columns[3].HeaderText = "UserName";
-            dgvUsers.Columns[3].Width = 120;
+                dgvUsers.Columns[3].HeaderText = "UserName";
+                dgvUsers.Columns[3].Width = 120;
 
-            dgvUsers.Columns[4].HeaderText = "Is Active";
-            dgvUsers.Columns[4].Width = 120;
+                dgvUsers.Columns[4].HeaderText = "Is Active";
+                dgvUsers.Columns[4].Width = 120;
+            }
+            
         }
 
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
