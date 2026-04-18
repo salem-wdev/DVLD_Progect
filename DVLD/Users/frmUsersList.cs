@@ -139,6 +139,13 @@ namespace DVLD.Users
 
             }
 
+            if (SelectedString == "None")
+            {
+                _dtAllUsers.DefaultView.RowFilter = string.Empty;
+                _RefreshRecordsNumber();
+                return;
+            }
+
             if (txtFilter.Text.ToString().Trim() == string.Empty)
             {
                 _dtAllUsers.DefaultView.RowFilter = string.Empty;
