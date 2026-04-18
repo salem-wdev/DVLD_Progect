@@ -75,6 +75,10 @@ namespace DVLD
                 txtPassword.Text = rememberedPassword;
                 chkRememberMe.Checked = true;
             }
+            else
+            {
+                chkRememberMe.Checked = false;
+            }
 
         }
 
