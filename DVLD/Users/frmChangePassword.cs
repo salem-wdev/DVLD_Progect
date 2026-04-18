@@ -90,13 +90,13 @@ namespace DVLD.Users
             }
 
 
-            if (_User.Password != txtCurrentPassword.Text)
+            if (_User.Password != txtCurrentPassword.Text.Trim())
             {
                 MessageBox.Show("Current password is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if(txtNewPassword.Text != txtConfirmPassword.Text)
+            if(txtNewPassword.Text.Trim() != txtConfirmPassword.Text.Trim())
             {
                 MessageBox.Show("Password is not matching.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtConfirmPassword.Focus();
@@ -105,7 +105,7 @@ namespace DVLD.Users
 
             _User.Password = txtNewPassword.Text;
 
-            if (clsUser.ChangePassword(_User.UserID, txtNewPassword.Text))
+            if (clsUser.ChangePassword(_User.UserID, txtNewPassword.Text.Trim()))
             {
                 MessageBox.Show("Password changed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
