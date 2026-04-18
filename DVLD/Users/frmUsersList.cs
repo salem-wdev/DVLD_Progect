@@ -146,7 +146,7 @@ namespace DVLD.Users
                 return;
             }
 
-            if (txtFilter.Text.ToString().Trim() == string.Empty)
+            if (string.IsNullOrWhiteSpace(txtFilter.Text.ToString().Trim()))
             {
                 _dtAllUsers.DefaultView.RowFilter = string.Empty;
                 _RefreshRecordsNumber();
