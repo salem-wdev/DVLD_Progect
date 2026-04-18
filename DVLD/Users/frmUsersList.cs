@@ -134,7 +134,7 @@ namespace DVLD.Users
                     SelectedString = "UserName";
                     break;
                 default:
-                    SelectedString = "UserID";
+                    SelectedString = "None";
                     break;
 
             }
