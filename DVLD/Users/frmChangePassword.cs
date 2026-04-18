@@ -154,5 +154,34 @@ namespace DVLD.Users
                 e.Cancel = false;
             }
         }
+
+        private void txtConfirmPassword_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox text = sender as TextBox;
+
+            if (txtNewPassword.Text.Trim() != txtConfirmPassword.Text.Trim())
+            {
+                errorProvider1.SetError(text, $"Password is not matching.");
+                e.Cancel = true;
+                return;
+            }
+            else
+            {
+                errorProvider1.SetError(text, string.Empty);
+                e.Cancel = false;
+            }
+
+
+            if (string.IsNullOrWhiteSpace(text.Text.Trim()))
+            {
+                errorProvider1.SetError(text, $"{text.Tag} is required.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(text, string.Empty);
+                e.Cancel = false;
+            }
+        }
     }
 }

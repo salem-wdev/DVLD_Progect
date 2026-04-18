@@ -133,7 +133,7 @@
             this.txtConfirmPassword.TabIndex = 140;
             this.txtConfirmPassword.Tag = "Confirm Password";
             this.txtConfirmPassword.TextChanged += new System.EventHandler(this.Password_TextChanged);
-            this.txtConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtPassword_Validating);
+            this.txtConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmPassword_Validating);
             // 
             // label3
             // 
