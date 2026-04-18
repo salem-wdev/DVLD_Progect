@@ -175,7 +175,7 @@ namespace DVLD.Users
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmShowUserInfo frm = new frmShowUserInfo((int)dgvUsers.CurrentRow.Cells[0].Value);
+            frmUserInfo frm = new frmUserInfo((int)dgvUsers.CurrentRow.Cells[0].Value);
             frm.ShowDialog();
         }
 

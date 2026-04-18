@@ -124,6 +124,7 @@ namespace DVLD.Users
             {
                 errorProvider1.SetError(text, $"{text.Tag} is required.");
                 e.Cancel = true;
+                return;
             }
             else
             {
@@ -131,11 +132,10 @@ namespace DVLD.Users
                 e.Cancel = false;
             }
 
-            if (clsGlobal.CurrentUser.Password != txtCurrentPassword.Text)
+            if (this._User.Password != txtCurrentPassword.Text)
             {
                 errorProvider1.SetError(text, $"{text.Tag} is incorrect.");
                 e.Cancel = true;
-                return;
             }
         }
 
@@ -143,7 +143,7 @@ namespace DVLD.Users
         {
             TextBox text = sender as TextBox;
 
-            if (text.Text == string.Empty)
+            if (string.IsNullOrWhiteSpace(text.Text.Trim()))
             {
                 errorProvider1.SetError(text, $"{text.Tag} is required.");
                 e.Cancel = true;

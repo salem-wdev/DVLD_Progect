@@ -10,19 +10,26 @@ using System.Windows.Forms;
 
 namespace DVLD.Users
 {
-    public partial class frmShowUserInfo : Form
+    public partial class frmUserInfo : Form
     {
-        public frmShowUserInfo(int UserID)
+
+        private int _UserID;
+
+        public frmUserInfo(int UserID)
         {
             InitializeComponent();
-            ctrlUserCard1.LoadUserInfo(UserID);
+            _UserID = UserID;
         }
-
-
 
         private void frmShowUserInfo_Load(object sender, EventArgs e)
         {
+            ctrlUserCard1.LoadUserInfo(_UserID);
 
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
