@@ -55,7 +55,6 @@ namespace DVLD
             clsGlobal.CurrentUser = null;
             _LoginForm.Show();
             this.Hide();
-            clsGlobal.CurrentUser = null;
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
