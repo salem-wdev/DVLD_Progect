@@ -108,7 +108,7 @@ namespace DVLD.Users
             if (clsUser.ChangePassword(_User.UserID, txtNewPassword.Text.Trim()))
             {
                 MessageBox.Show("Password changed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                this._ResetDefualtValues();
             }
             else
             {
