@@ -303,14 +303,7 @@ namespace DVLD.People.Forms
 
         private void dgvPeople_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left && e.RowIndex >= 0)
-            {
-                dgvPeople.ClearSelection();
-                dgvPeople.Rows[e.RowIndex].Selected = true;
-                dgvPeople.CurrentCell = dgvPeople.Rows[e.RowIndex].Cells[0];
-            }
-
-            if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
+            if(e.RowIndex >= 0)
             {
                 dgvPeople.ClearSelection();
                 dgvPeople.Rows[e.RowIndex].Selected = true;
