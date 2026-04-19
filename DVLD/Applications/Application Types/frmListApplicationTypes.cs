@@ -29,6 +29,7 @@ namespace DVLD.Applications.Application_Types
         {
             _dtAllApplicationTypes = clsApplicationType.GetAllApplicationTypes();
             dgvApplicationTypes.DataSource = _dtAllApplicationTypes;
+            _RefreshNumberOfRecords();
         }
 
         private void frmListApplicationTypes_Load(object sender, EventArgs e)
