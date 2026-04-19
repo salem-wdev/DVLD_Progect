@@ -100,15 +100,8 @@ namespace DVLD_Business
             this.PersonID = clsPersonData.AddNewPerson(  FirstName,  SecondName,  ThirdName
                 , LastName,  NationalNo,  DateOfBirth,  Gender,  Address,  Phone,  Email
                 , NationalityCountryID,  ImagePath);
-        
-            if(PersonID != -1 )
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+
+            return (PersonID != -1);
         }
 
         private bool _UpdatePerson()
@@ -205,8 +198,13 @@ namespace DVLD_Business
             {
                 case enMode.AddNew:
                     {
-                        Mode = enMode.Update;
-                        return _AddNewPerson();
+                        if (_AddNewPerson())
+                        {
+                            Mode = enMode.Update;
+                            return true;
+                        }
+
+                        return false;
                     }
                 case enMode.Update:
                     {
