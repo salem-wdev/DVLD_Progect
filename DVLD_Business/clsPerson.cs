@@ -83,23 +83,9 @@ namespace DVLD_Business
 
         private bool _AddNewPerson()
         {
-            string FirstName = this.FirstName;
-            string SecondName = this.SecondName;
-            string ThirdName = this.ThirdName;
-            string LastName = this.LastName;
-            string NationalNo = this.NationalNo;
-            DateTime DateOfBirth = this.DateOfBirth;
-            short Gender = (short)this.Gender;
-            string Address = this.Address;
-            string Phone = this.Phone;
-            string Email = this.Email;
-            int NationalityCountryID = this.NationalityCountryID;
-            string ImagePath = this.ImagePath;
-
-
-            this.PersonID = clsPersonData.AddNewPerson(  FirstName,  SecondName,  ThirdName
-                , LastName,  NationalNo,  DateOfBirth,  Gender,  Address,  Phone,  Email
-                , NationalityCountryID,  ImagePath);
+            this.PersonID = clsPersonData.AddNewPerson(this.FirstName,  this.SecondName,  this.ThirdName
+                , this.LastName,  this.NationalNo,  this.DateOfBirth,  (short)this.Gender,  this.Address,  this.Phone,  this.Email
+                , this.NationalityCountryID,  this.ImagePath);
 
             return (PersonID != -1);
         }
