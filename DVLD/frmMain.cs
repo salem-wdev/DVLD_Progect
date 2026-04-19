@@ -1,4 +1,5 @@
-﻿using DVLD.Global_Classes;
+﻿using DVLD.Applications.Application_Types;
+using DVLD.Global_Classes;
 using DVLD.People.Forms;
 using DVLD.Users;
 using DVLD_Business;
@@ -82,6 +83,12 @@ namespace DVLD
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void manageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListApplicationTypes frm = new frmListApplicationTypes();
+            frm.ShowDialog();
         }
     }
 }

@@ -83,32 +83,11 @@ namespace DVLD_Business
 
         private bool _AddNewPerson()
         {
-            string FirstName = this.FirstName;
-            string SecondName = this.SecondName;
-            string ThirdName = this.ThirdName;
-            string LastName = this.LastName;
-            string NationalNo = this.NationalNo;
-            DateTime DateOfBirth = this.DateOfBirth;
-            short Gender = (short)this.Gender;
-            string Address = this.Address;
-            string Phone = this.Phone;
-            string Email = this.Email;
-            int NationalityCountryID = this.NationalityCountryID;
-            string ImagePath = this.ImagePath;
+            this.PersonID = clsPersonData.AddNewPerson(this.FirstName,  this.SecondName,  this.ThirdName
+                , this.LastName,  this.NationalNo,  this.DateOfBirth,  (short)this.Gender,  this.Address,  this.Phone,  this.Email
+                , this.NationalityCountryID,  this.ImagePath);
 
-
-            this.PersonID = clsPersonData.AddNewPerson(  FirstName,  SecondName,  ThirdName
-                , LastName,  NationalNo,  DateOfBirth,  Gender,  Address,  Phone,  Email
-                , NationalityCountryID,  ImagePath);
-        
-            if(PersonID != -1 )
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (PersonID != -1);
         }
 
         private bool _UpdatePerson()
@@ -205,8 +184,13 @@ namespace DVLD_Business
             {
                 case enMode.AddNew:
                     {
-                        Mode = enMode.Update;
-                        return _AddNewPerson();
+                        if (_AddNewPerson())
+                        {
+                            Mode = enMode.Update;
+                            return true;
+                        }
+
+                        return false;
                     }
                 case enMode.Update:
                     {
