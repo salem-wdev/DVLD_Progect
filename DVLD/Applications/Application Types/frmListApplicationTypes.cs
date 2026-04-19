@@ -29,6 +29,7 @@ namespace DVLD.Applications.Application_Types
         {
             _dtAllApplicationTypes = clsApplicationType.GetAllApplicationTypes();
             dgvApplicationTypes.DataSource = _dtAllApplicationTypes;
+            _RefreshNumberOfRecords();
         }
 
         private void frmListApplicationTypes_Load(object sender, EventArgs e)
@@ -50,7 +51,19 @@ namespace DVLD.Applications.Application_Types
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            frmEditApplicationType frm = new frmEditApplicationType((int)dgvApplicationTypes.CurrentRow.Cells[0].Value);
+            frm.ShowDialog();
+            _RefreshData();
+        }
 
+        private void dgvApplicationTypes_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                dgvApplicationTypes.ClearSelection();
+                dgvApplicationTypes.Rows[e.RowIndex].Selected = true;
+                dgvApplicationTypes.CurrentCell = dgvApplicationTypes.Rows[e.RowIndex].Cells[0];
+            }
         }
     }
 }
