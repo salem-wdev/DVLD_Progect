@@ -14,7 +14,7 @@ namespace DVLD.Users
 {
     public partial class frmUsersList : Form
     {
-        DataTable dtUsers;
+        private static DataTable _dtAllUsers;
         private void _RefreshRecordsNumber()
         {
             lblRecord.Text = dgvUsers.Rows.Count.ToString();
@@ -22,8 +22,8 @@ namespace DVLD.Users
 
         private void _RefreshUsersList()
         {
-            dtUsers = clsUser.GetAllUsers();
-            dgvUsers.DataSource = dtUsers;
+            _dtAllUsers = clsUser.GetAllUsers();
+            dgvUsers.DataSource = _dtAllUsers;
             _RefreshRecordsNumber();
         }
 
@@ -39,45 +39,50 @@ namespace DVLD.Users
             cbFilter.SelectedIndex = 0;
             cbIsActive.SelectedIndex = 0;
 
-            dgvUsers.Columns[0].HeaderText = "User ID";
-            dgvUsers.Columns[0].Width = 110;
+            if (dgvUsers.Columns.Count > 0)
+            {
+                dgvUsers.Columns[0].HeaderText = "User ID";
+                dgvUsers.Columns[0].Width = 110;
 
-            dgvUsers.Columns[1].HeaderText = "Person ID";
-            dgvUsers.Columns[1].Width = 120;
+                dgvUsers.Columns[1].HeaderText = "Person ID";
+                dgvUsers.Columns[1].Width = 120;
 
-            dgvUsers.Columns[2].HeaderText = "Full Name";
-            dgvUsers.Columns[2].Width = 350;
+                dgvUsers.Columns[2].HeaderText = "Full Name";
+                dgvUsers.Columns[2].Width = 350;
 
-            dgvUsers.Columns[3].HeaderText = "UserName";
-            dgvUsers.Columns[3].Width = 120;
+                dgvUsers.Columns[3].HeaderText = "UserName";
+                dgvUsers.Columns[3].Width = 120;
 
-            dgvUsers.Columns[4].HeaderText = "Is Active";
-            dgvUsers.Columns[4].Width = 120;
+                dgvUsers.Columns[4].HeaderText = "Is Active";
+                dgvUsers.Columns[4].Width = 120;
+            }
+            
         }
 
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbIsActive.Visible = false;
+            cbIsActive.SelectedIndex = 0;
+            txtFilter.Text = string.Empty;
+            txtFilter.Visible = false;
+
 
             if (cbFilter.SelectedItem.ToString() == "None")
             {
-                cbIsActive.Visible = false;
-                cbIsActive.SelectedIndex = 0;
-                txtFilter.Text = string.Empty;
-                txtFilter.Visible = false;
+               
                 return;
             }
 
             if (cbFilter.SelectedItem.ToString() == "Is Active")
             {
                 cbIsActive.Visible = true;
-                txtFilter.Visible = false;
-                txtFilter.Text = string.Empty;
+                cbFilter.Focus();
                 return;
             }
 
             txtFilter.Visible = true;
             txtFilter.Text = string.Empty;
+            txtFilter.Focus();
 
 
         }
@@ -87,13 +92,13 @@ namespace DVLD.Users
             switch (cbIsActive.SelectedItem)
             {
                 case "All":
-                    dtUsers.DefaultView.RowFilter = string.Empty;
+                    _dtAllUsers.DefaultView.RowFilter = string.Empty;
                     break;
                 case "Yes":
-                    dtUsers.DefaultView.RowFilter = "IsActive = true";
+                    _dtAllUsers.DefaultView.RowFilter = "IsActive = true";
                     break;
                 case "No":
-                    dtUsers.DefaultView.RowFilter = "IsActive = false";
+                    _dtAllUsers.DefaultView.RowFilter = "IsActive = false";
                     break;
             }
 
@@ -129,33 +134,40 @@ namespace DVLD.Users
                     SelectedString = "UserName";
                     break;
                 default:
-                    SelectedString = "UserID";
+                    SelectedString = "None";
                     break;
 
             }
 
-            if (txtFilter.Text.ToString().Trim() == string.Empty)
+            if (SelectedString == "None")
             {
-                dtUsers.DefaultView.RowFilter = string.Empty;
+                _dtAllUsers.DefaultView.RowFilter = string.Empty;
+                _RefreshRecordsNumber();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtFilter.Text.ToString().Trim()))
+            {
+                _dtAllUsers.DefaultView.RowFilter = string.Empty;
                 _RefreshRecordsNumber();
                 return;
             }
 
             if (cbFilter.SelectedItem.ToString() == "User ID" || cbFilter.SelectedItem.ToString() == "Person ID")
             {
-                dtUsers.DefaultView.RowFilter = $"{SelectedString} = {txtFilter.Text.ToString()}";
+                _dtAllUsers.DefaultView.RowFilter = $"{SelectedString} = {txtFilter.Text.ToString()}";
                 _RefreshRecordsNumber();
                 return;
             }
 
             if (cbFilter.SelectedItem.ToString() == "UserName")
             {
-                dtUsers.DefaultView.RowFilter = $"{SelectedString} LIKE '{txtFilter.Text.ToString().Trim()}%'";
+                _dtAllUsers.DefaultView.RowFilter = $"{SelectedString} LIKE '{txtFilter.Text.ToString().Trim()}%'";
                 _RefreshRecordsNumber();
                 return;
             }
 
-            dtUsers.DefaultView.RowFilter = $"{SelectedString} LIKE '%{txtFilter.Text.ToString().Trim()}%'";
+            _dtAllUsers.DefaultView.RowFilter = $"{SelectedString} LIKE '%{txtFilter.Text.ToString().Trim()}%'";
 
             _RefreshRecordsNumber();
 

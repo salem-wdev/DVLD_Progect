@@ -22,7 +22,7 @@ namespace DVLD
         private void btnLogin_Click(object sender, EventArgs e)
         {
 
-            clsUser user = clsUser.FindByUsernameAndPassword(txtUserName.Text, txtPassword.Text);
+            clsUser user = clsUser.FindByUsernameAndPassword(txtUserName.Text.Trim(), txtPassword.Text.Trim());
 
             if (user != null)
             {
@@ -56,12 +56,13 @@ namespace DVLD
             else
             {
                 MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUserName.Focus();
             }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
@@ -74,7 +75,16 @@ namespace DVLD
                 txtPassword.Text = rememberedPassword;
                 chkRememberMe.Checked = true;
             }
+            else
+            {
+                chkRememberMe.Checked = false;
+            }
 
+        }
+
+        private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

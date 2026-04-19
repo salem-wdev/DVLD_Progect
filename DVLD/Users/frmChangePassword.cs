@@ -90,13 +90,13 @@ namespace DVLD.Users
             }
 
 
-            if (_User.Password != txtCurrentPassword.Text)
+            if (_User.Password != txtCurrentPassword.Text.Trim())
             {
                 MessageBox.Show("Current password is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if(txtNewPassword.Text != txtConfirmPassword.Text)
+            if(txtNewPassword.Text.Trim() != txtConfirmPassword.Text.Trim())
             {
                 MessageBox.Show("Password is not matching.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtConfirmPassword.Focus();
@@ -105,10 +105,10 @@ namespace DVLD.Users
 
             _User.Password = txtNewPassword.Text;
 
-            if (clsUser.ChangePassword(_User.UserID, txtNewPassword.Text))
+            if (_User.Save())
             {
                 MessageBox.Show("Password changed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                this._ResetDefualtValues();
             }
             else
             {
@@ -142,6 +142,35 @@ namespace DVLD.Users
         private void txtPassword_Validating(object sender, CancelEventArgs e)
         {
             TextBox text = sender as TextBox;
+
+            if (string.IsNullOrWhiteSpace(text.Text.Trim()))
+            {
+                errorProvider1.SetError(text, $"{text.Tag} is required.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(text, string.Empty);
+                e.Cancel = false;
+            }
+        }
+
+        private void txtConfirmPassword_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox text = sender as TextBox;
+
+            if (txtNewPassword.Text.Trim() != txtConfirmPassword.Text.Trim())
+            {
+                errorProvider1.SetError(text, $"Password is not matching.");
+                e.Cancel = true;
+                return;
+            }
+            else
+            {
+                errorProvider1.SetError(text, string.Empty);
+                e.Cancel = false;
+            }
+
 
             if (string.IsNullOrWhiteSpace(text.Text.Trim()))
             {

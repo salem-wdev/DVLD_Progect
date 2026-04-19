@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.ctrlUserCard1 = new DVLD.Users.Controls.ctrlUserCard();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCurrentPassword = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -42,18 +41,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ctrlUserCard1 = new DVLD.Users.Controls.ctrlUserCard();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ctrlUserCard1
-            // 
-            this.ctrlUserCard1.Location = new System.Drawing.Point(12, 12);
-            this.ctrlUserCard1.Name = "ctrlUserCard1";
-            this.ctrlUserCard1.Size = new System.Drawing.Size(847, 397);
-            this.ctrlUserCard1.TabIndex = 0;
             // 
             // label1
             // 
@@ -133,7 +126,7 @@
             this.txtConfirmPassword.TabIndex = 140;
             this.txtConfirmPassword.Tag = "Confirm Password";
             this.txtConfirmPassword.TextChanged += new System.EventHandler(this.Password_TextChanged);
-            this.txtConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtPassword_Validating);
+            this.txtConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmPassword_Validating);
             // 
             // label3
             // 
@@ -195,11 +188,20 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // ctrlUserCard1
+            // 
+            this.ctrlUserCard1.Location = new System.Drawing.Point(12, 12);
+            this.ctrlUserCard1.Name = "ctrlUserCard1";
+            this.ctrlUserCard1.Size = new System.Drawing.Size(847, 397);
+            this.ctrlUserCard1.TabIndex = 0;
+            // 
             // frmChangePassword
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(870, 638);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCurrentPassword);
