@@ -130,6 +130,7 @@
             this.dgvApplicationTypes.Size = new System.Drawing.Size(679, 354);
             this.dgvApplicationTypes.TabIndex = 113;
             this.dgvApplicationTypes.TabStop = false;
+            this.dgvApplicationTypes.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvApplicationTypes_CellMouseDown);
             // 
             // cmsApplicationTypes
             // 
@@ -138,7 +139,7 @@
             this.editToolStripMenuItem,
             this.toolStripSeparator1});
             this.cmsApplicationTypes.Name = "contextMenuStrip1";
-            this.cmsApplicationTypes.Size = new System.Drawing.Size(203, 76);
+            this.cmsApplicationTypes.Size = new System.Drawing.Size(203, 54);
             // 
             // toolStripSeparator2
             // 

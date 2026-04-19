@@ -55,5 +55,15 @@ namespace DVLD.Applications.Application_Types
             frm.ShowDialog();
             _RefreshData();
         }
+
+        private void dgvApplicationTypes_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                dgvApplicationTypes.ClearSelection();
+                dgvApplicationTypes.Rows[e.RowIndex].Selected = true;
+                dgvApplicationTypes.CurrentCell = dgvApplicationTypes.Rows[e.RowIndex].Cells[0];
+            }
+        }
     }
 }
