@@ -22,6 +22,7 @@ namespace DVLD.Applications.Application_Types
             _ApplicationTypeID = ApplicationTypeID;
         }
 
+
         private void frmEditApplicationType_Load(object sender, EventArgs e)
         {
             lblApplicationTypeID.Text = _ApplicationTypeID.ToString();
@@ -66,6 +67,22 @@ namespace DVLD.Applications.Application_Types
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
 
+        }
+
+        private void txt_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+
+            if(string.IsNullOrWhiteSpace(txt.Text))
+            {
+                errorProvider1.SetError(txt,txt?.Tag.ToString()+" is requered");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(txt, string.Empty);
+                e.Cancel = false;
+            }
         }
     }
 }
