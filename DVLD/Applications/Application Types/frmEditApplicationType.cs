@@ -49,9 +49,11 @@ namespace DVLD.Applications.Application_Types
             if (decimal.TryParse(txtFees.Text.Trim(), out decimal fees))
             {
                 _ApplicationType.ApplicationTypeFees = (float)fees;
-                _ApplicationType.Save();
-                MessageBox.Show("Application Type updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                if (_ApplicationType.Save())
+                {
+                    MessageBox.Show("Application Type updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
             }
             else
             {
