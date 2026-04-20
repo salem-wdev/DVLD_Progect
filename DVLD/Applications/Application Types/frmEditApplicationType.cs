@@ -13,7 +13,7 @@ namespace DVLD.Applications.Application_Types
 {
     public partial class frmEditApplicationType : Form
     {
-        private int _ApplicationTypeID;
+        private int _ApplicationTypeID = -1;
         private clsApplicationType _ApplicationType;
 
         public frmEditApplicationType(int ApplicationTypeID)
