@@ -112,13 +112,28 @@ namespace DVLD.Applications.Application_Types
 
             if(string.IsNullOrWhiteSpace(txt.Text))
             {
-                errorProvider1.SetError(txt,txt?.Tag.ToString()+" is requered");
+                errorProvider1.SetError(txt,txt?.Tag.ToString()+ " is required");
                 e.Cancel = true;
+                return;
             }
             else
             {
                 errorProvider1.SetError(txt, string.Empty);
                 e.Cancel = false;
+            }
+
+            if (txt == txtFees)
+            {
+                if(!clsValidation.IsNumber(txt.Text))
+                {
+                    errorProvider1.SetError(txt, "Please enter a valid number");
+                    e.Cancel = true;
+                }
+                else
+                {
+                    errorProvider1.SetError(txt, string.Empty);
+                    e.Cancel = false;
+                }
             }
         }
     }
