@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -39,8 +40,10 @@
             this.txtFees = new System.Windows.Forms.TextBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -116,6 +119,8 @@
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(282, 26);
             this.txtTitle.TabIndex = 141;
+            this.txtTitle.Tag = "Title";
+            this.txtTitle.Validating += new System.ComponentModel.CancelEventHandler(this.txt_Validating);
             // 
             // label1
             // 
@@ -148,7 +153,9 @@
             this.txtFees.Name = "txtFees";
             this.txtFees.Size = new System.Drawing.Size(282, 26);
             this.txtFees.TabIndex = 142;
+            this.txtFees.Tag = "Fees";
             this.txtFees.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFees_KeyPress);
+            this.txtFees.Validating += new System.ComponentModel.CancelEventHandler(this.txt_Validating);
             // 
             // pictureBox8
             // 
@@ -170,10 +177,17 @@
             this.pictureBox3.TabIndex = 145;
             this.pictureBox3.TabStop = false;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // frmEditApplicationType
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(420, 258);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
@@ -192,6 +206,7 @@
             this.Load += new System.EventHandler(this.frmEditApplicationType_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,5 +225,6 @@
         private System.Windows.Forms.TextBox txtFees;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
