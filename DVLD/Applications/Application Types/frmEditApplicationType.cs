@@ -24,7 +24,9 @@ namespace DVLD.Applications.Application_Types
 
         private void frmEditApplicationType_Load(object sender, EventArgs e)
         {
+            lblApplicationTypeID.Text = _ApplicationTypeID.ToString();
             _ApplicationType = clsApplicationType.Find(_ApplicationTypeID);
+
             if (_ApplicationType == null)
             {
                 MessageBox.Show("Application Type not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -32,7 +34,6 @@ namespace DVLD.Applications.Application_Types
             }
             else
             {
-                lblApplicationTypeID.Text = _ApplicationType.ApplicationTypeID.ToString();
                 txtTitle.Text = _ApplicationType.ApplicationTypeTitle;
                 txtFees.Text = _ApplicationType.ApplicationTypeFees.ToString("F2");
             }
