@@ -65,8 +65,20 @@ namespace DVLD.Applications.Application_Types
 
         private void txtFees_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            // Allow only one mark
+            else if (e.KeyChar == '.' && !((TextBox)sender).Text.Contains("."))
+            {
+                e.Handled = false;
+            }
+            // Prevent anything else
+            else
+            {
+                e.Handled = true;
+            }
         }
 
         private void txt_Validating(object sender, CancelEventArgs e)
