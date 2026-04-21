@@ -67,5 +67,12 @@ namespace DVLD.Tests.Test_Types
                 dgvTestTypes.CurrentCell = dgvTestTypes.Rows[e.RowIndex].Cells[0];
             }
         }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEditTestType frm = new frmEditTestType((int)dgvTestTypes.CurrentRow.Cells[0].Value);
+            frm.ShowDialog();
+            _Refresh();
+        }
     }
 }
