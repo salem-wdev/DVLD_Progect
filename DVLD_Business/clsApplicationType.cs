@@ -43,11 +43,6 @@ namespace DVLD_Business
 
         private bool _AddNewApplicationType()
         {
-            string ApplicationTypeTitle = this.ApplicationTypeTitle;
-            float ApplicationTypeFees = this.ApplicationTypeFees;
-            
-
-
             this.ApplicationTypeID = clsApplicationTypeData.AddNewApplicationType(ApplicationTypeTitle, ApplicationTypeFees);
 
             return (ApplicationTypeID != -1);
