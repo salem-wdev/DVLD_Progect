@@ -63,13 +63,13 @@ namespace DVLD_DataAccess
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string Query = "INSERT INTO TestTypes " +
-            "(TestTypeTitle, TestTypeDescription, TestFees)" +
-            " VALUES (@TestTypeTitle, @TestTypeDescription, @TestFees)" +
+            "(TestTypeTitle, TestTypeDescription, TestTypeFees)" +
+            " VALUES (@TestTypeTitle, @TestTypeDescription, @TestTypeFees)" +
                 "SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(Query, connection);
             command.Parameters.AddWithValue("@TestTypeTitle", TestTypeTitle);
-            command.Parameters.AddWithValue("@TestFees", TestFees);
+            command.Parameters.AddWithValue("@TestTypeFees", TestFees);
             command.Parameters.AddWithValue("@TestTypeDescription", TestTypeDescription);
 
             try
@@ -106,7 +106,7 @@ namespace DVLD_DataAccess
             string Query = "UPDATE TestTypes " +
                 "SET TestTypeTitle = @TestTypeTitle " +
                 ",TestTypeDescription = @TestTypeDescription" +
-                ",TestFees = @TestFees" +
+                ",TestTypeFees = @TestTypeFees" +
                 " WHERE TestTypeID = @TestTypeID";
 
             SqlCommand Command = new SqlCommand(Query, connection);
@@ -114,7 +114,7 @@ namespace DVLD_DataAccess
             Command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
             Command.Parameters.AddWithValue("@TestTypeDescription", TestTypeDescription);
             Command.Parameters.AddWithValue("@TestTypeTitle", TestTypeTitle);
-            Command.Parameters.AddWithValue("@TestFees", TestFees);
+            Command.Parameters.AddWithValue("@TestTypeFees", TestFees);
 
 
             try
@@ -140,7 +140,7 @@ namespace DVLD_DataAccess
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string Query = "SELECT TestTypeID, TestTypeTitle," +
-                " TestTypeDescription, TestFees" +
+                " TestTypeDescription, TestTypeFees" +
                 " FROM TestTypes";
 
             SqlCommand Command = new SqlCommand(Query, connection);
