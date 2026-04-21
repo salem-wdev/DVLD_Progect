@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DVLD_DataAccess
 {
-    public class clsTestType
+    public class clsTestTypeData
     {
         public static bool GetTestTypeInfoByID(int TestTypeID,
         ref string TestTypeTitle, ref string TestTypeDescription, ref float TestFees)
