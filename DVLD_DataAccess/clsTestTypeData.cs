@@ -11,14 +11,16 @@ namespace DVLD_DataAccess
     public class clsTestTypeData
     {
         public static bool GetTestTypeInfoByID(int TestTypeID,
-        ref string TestTypeTitle, ref string TestTypeDescription, ref float TestFees)
+        ref string TestTypeTitle, ref string TestTypeDescription, ref float TestTypeFees)
         {
             bool IsFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string Query = "SELECT * FROM TestTypes" +
-            "  WHERE TestTypeID = @TestTypeID;";
+            string Query = "SELECT TestTypeID, TestTypeTitle," +
+                " TestTypeDescription, TestTypeFees" +
+                " FROM TestTypes" +
+                " WHERE TestTypeID = @TestTypeID;";
 
             SqlCommand command = new SqlCommand(Query, connection);
             command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
@@ -32,7 +34,7 @@ namespace DVLD_DataAccess
 
                     TestTypeTitle = reader["TestTypeTitle"].ToString();
                     TestTypeDescription = reader["TestTypeDescription"].ToString();
-                    TestFees = Convert.ToSingle(reader["TestFees"]);
+                    TestTypeFees = Convert.ToSingle(reader["TestTypeFees"]);
 
 
                     reader.Close();
@@ -55,7 +57,7 @@ namespace DVLD_DataAccess
 
 
         public static int AddNewTestType(string TestTypeTitle,
-           string TestTypeDescription, float TestFees)
+           string TestTypeDescription, float TestTypeFees)
         {
 
             int TestTypeID = -1;
@@ -64,19 +66,19 @@ namespace DVLD_DataAccess
 
             string Query = "INSERT INTO TestTypes " +
             "(TestTypeTitle, TestTypeDescription, TestTypeFees)" +
-            " VALUES (@TestTypeTitle, @TestTypeDescription, @TestTypeFees)" +
-                "SELECT SCOPE_IDENTITY();";
+            " VALUES (@TestTypeTitle, @TestTypeDescription, @TestTypeFees);" +
+                " SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(Query, connection);
             command.Parameters.AddWithValue("@TestTypeTitle", TestTypeTitle);
-            command.Parameters.AddWithValue("@TestTypeFees", TestFees);
+            command.Parameters.AddWithValue("@TestTypeFees", TestTypeFees);
             command.Parameters.AddWithValue("@TestTypeDescription", TestTypeDescription);
 
             try
             {
                 connection.Open();
                 object newTestTypeID = command.ExecuteScalar();
-                if (int.TryParse(newTestTypeID.ToString(), out int NewID))
+                if (int.TryParse(newTestTypeID?.ToString(), out int NewID))
                 {
                     TestTypeID = NewID;
                 }
@@ -97,7 +99,7 @@ namespace DVLD_DataAccess
         }
 
         public static bool UpdateTestType(int TestTypeID,
-        string TestTypeTitle, string TestTypeDescription, float TestFees)
+        string TestTypeTitle, string TestTypeDescription, float TestTypeFees)
         {
             int NumberOfEffectedRows = 0;
 
@@ -114,7 +116,7 @@ namespace DVLD_DataAccess
             Command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
             Command.Parameters.AddWithValue("@TestTypeDescription", TestTypeDescription);
             Command.Parameters.AddWithValue("@TestTypeTitle", TestTypeTitle);
-            Command.Parameters.AddWithValue("@TestTypeFees", TestFees);
+            Command.Parameters.AddWithValue("@TestTypeFees", TestTypeFees);
 
 
             try
