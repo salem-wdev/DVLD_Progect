@@ -70,7 +70,7 @@ namespace DVLD.Tests.Test_Types
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmEditTestType frm = new frmEditTestType((int)dgvTestTypes.CurrentRow.Cells[0].Value);
+            frmEditTestType frm = new frmEditTestType((clsTestType.enTestType)dgvTestTypes.CurrentRow.Cells[0].Value);
             frm.ShowDialog();
             _Refresh();
         }

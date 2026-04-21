@@ -13,10 +13,10 @@ namespace DVLD.Tests.Test_Types
 {
     public partial class frmEditTestType : Form
     {
-        private int _TestTypeID = -1;
+        private clsTestType.enTestType _TestTypeID = clsTestType.enTestType.None;
         private clsTestType _TestType;
 
-        public frmEditTestType(int TestTypeID)
+        public frmEditTestType(clsTestType.enTestType TestTypeID)
         {
             InitializeComponent();
             _TestTypeID = TestTypeID;
@@ -94,7 +94,7 @@ namespace DVLD.Tests.Test_Types
             _TestType = clsTestType.Find(_TestTypeID);
             if (_TestType != null)
             {
-                lblTestTypeID.Text = _TestType.TestTypeID.ToString();
+                lblTestTypeID.Text = _TestType.ID.ToString();
                 txtTitle.Text = _TestType.TestTypeTitle;
                 txtDescription.Text = _TestType.TestTypeDescription;
                 txtFees.Text = _TestType.TestTypeFees.ToString();

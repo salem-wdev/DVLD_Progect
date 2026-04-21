@@ -15,14 +15,22 @@ namespace DVLD_Business
         public enum enMode { AddNew = 0, Update = 1 }
         public enMode Mode { get; private set; }
 
-        public int TestTypeID { get; private set; }
+        public enum enTestType
+        {
+            None = -1,
+            VisionTest = 1,
+            WrittenTest = 2,
+            StreetTest = 3
+        }
+
+        public clsTestType.enTestType ID { get; private set; }
         public string TestTypeTitle { get; set; }
         public string TestTypeDescription { get; set; }
         public float TestTypeFees { get; set; }
 
         public clsTestType()
         {
-            TestTypeID = -1;
+            ID = clsTestType.enTestType.None;
             TestTypeFees = 0.0f;
             TestTypeTitle = string.Empty;
             TestTypeDescription = string.Empty;
@@ -33,10 +41,10 @@ namespace DVLD_Business
 
 
         // New overload that sets TestTypeID so instances returned from Find have correct ID
-        private clsTestType(int TestTypeID,
+        private clsTestType(enTestType ID,
             string TestTypeTitle, string TestTypeDescription, float TestTypeFees)
         {
-            this.TestTypeID = TestTypeID;
+            this.ID = ID;
             this.TestTypeTitle = TestTypeTitle;
             this.TestTypeDescription = TestTypeDescription;
             this.TestTypeFees = TestTypeFees;
@@ -47,27 +55,27 @@ namespace DVLD_Business
         private bool _AddNewTestType()
         {
             
-            this.TestTypeID = clsTestTypeData.AddNewTestType(TestTypeTitle, TestTypeDescription, TestTypeFees);
+            this.ID = (enTestType)clsTestTypeData.AddNewTestType(TestTypeTitle, TestTypeDescription, TestTypeFees);
 
-            return (TestTypeID != -1);
+            return ((int)ID != -1);
         }
 
         private bool _UpdateTestType()
         {
-            return clsTestTypeData.UpdateTestType(TestTypeID, TestTypeTitle, TestTypeDescription, TestTypeFees);
+            return clsTestTypeData.UpdateTestType((int)ID, TestTypeTitle, TestTypeDescription, TestTypeFees);
         }
 
-        public static clsTestType Find(int TestTypeID)
+        public static clsTestType Find(enTestType ID)
         {
             string TestTypeTitle = string.Empty;
             string TestTypeDescription = string.Empty;
             float TestTypeFees = 0.0f;
 
-            bool found = clsTestTypeData.GetTestTypeInfoByID(TestTypeID, ref TestTypeTitle, ref TestTypeDescription, ref TestTypeFees);
+            bool found = clsTestTypeData.GetTestTypeInfoByID((int)ID, ref TestTypeTitle, ref TestTypeDescription, ref TestTypeFees);
 
             if (found)
             {
-                return new clsTestType(TestTypeID, TestTypeTitle, TestTypeDescription, TestTypeFees);
+                return new clsTestType(ID, TestTypeTitle, TestTypeDescription, TestTypeFees);
             }
             else
             {
