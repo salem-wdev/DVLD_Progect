@@ -58,6 +58,10 @@ namespace DVLD.Applications.Application_Types
                         MessageBox.Show("Application Type updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
+                    else
+                    {
+                        MessageBox.Show("Failed to update Application Type. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
