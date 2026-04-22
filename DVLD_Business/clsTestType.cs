@@ -57,7 +57,7 @@ namespace DVLD_Business
             
             this.ID = (enTestType)clsTestTypeData.AddNewTestType(TestTypeTitle, TestTypeDescription, TestTypeFees);
 
-            return ((int)ID != -1);
+            return (ID != enTestType.None);
         }
 
         private bool _UpdateTestType()
