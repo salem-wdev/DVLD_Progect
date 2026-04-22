@@ -41,5 +41,42 @@ namespace DVLD
             return (ValidateInteger(Number) || ValidateFloat(Number));
         }
 
+        public static bool IsInputValidDecimal(char keyChar, string currentText, int SelectionStart)
+        {
+
+            if (keyChar != '.')
+            {
+                if (!char.IsDigit(keyChar) && !char.IsControl(keyChar))
+                {
+                    return false;
+                    
+                }
+            }
+
+            // Prevent the placement of a mark when replacing the entire text with it. 
+            if (keyChar == '.' && SelectionStart == 0)
+            {
+                return false;
+                
+            }
+
+            // Allow only one mark
+            if (keyChar == '.' && currentText.Contains("."))
+            {
+                return false;
+                
+            }
+            // prevent mark when text box is empty
+            //if (KeyChar == '.' && string.IsNullOrWhiteSpace(((TextBox)sender).Text))
+            //{
+            //    e.Handled = true;
+            //    return;
+            //}
+            // allow anything else
+
+            return true;
+
+        }
+
     }
 }
