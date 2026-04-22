@@ -12,7 +12,7 @@ namespace DVLD_DataAccess
     {
 
         public static bool GetApplicationTypeInfoByID(int ApplicationTypeID,
-        ref string ApplicationTypeTitle, ref float ApplicationFees)
+        ref string ApplicationTypeTitle, ref decimal ApplicationFees)
         {
             bool IsFound = false;
 
@@ -32,7 +32,7 @@ namespace DVLD_DataAccess
                 {
 
                     ApplicationTypeTitle = reader["ApplicationTypeTitle"].ToString();
-                    ApplicationFees = Convert.ToSingle(reader["ApplicationFees"]);
+                    ApplicationFees = Convert.ToDecimal(reader["ApplicationFees"]);
 
 
                     reader.Close();
@@ -55,7 +55,7 @@ namespace DVLD_DataAccess
 
 
         public static int AddNewApplicationType(string ApplicationTypeTitle,
-            float ApplicationFees)
+            decimal ApplicationFees)
         {
 
             int ApplicationTypeID = -1;
@@ -97,7 +97,7 @@ namespace DVLD_DataAccess
         }
 
         public static bool UpdateApplicationType(int ApplicationTypeID,
-        string ApplicationTypeTitle, float ApplicationFees)
+        string ApplicationTypeTitle, decimal ApplicationFees)
         {
             int NumberOfEffectedRows = 0;
 

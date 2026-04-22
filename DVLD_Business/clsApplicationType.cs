@@ -17,12 +17,12 @@ namespace DVLD_Business
 
         public int ApplicationTypeID { get; private set; }
         public string ApplicationTypeTitle { get; set; }
-        public float ApplicationTypeFees { get; set; }
+        public decimal ApplicationTypeFees { get; set; }
 
         public clsApplicationType()
         {
             ApplicationTypeID = -1;
-            ApplicationTypeFees = 0.0f;
+            ApplicationTypeFees = 0.0m;
             ApplicationTypeTitle = string.Empty;
 
             Mode = enMode.AddNew;
@@ -32,7 +32,7 @@ namespace DVLD_Business
 
         // New overload that sets ApplicationTypeID so instances returned from Find have correct ID
         private clsApplicationType(int ApplicationTypeID,
-            string ApplicationTypeTitle, float ApplicationTypeFees)
+            string ApplicationTypeTitle, decimal ApplicationTypeFees)
         {
             this.ApplicationTypeID = ApplicationTypeID;
             this.ApplicationTypeTitle = ApplicationTypeTitle;
@@ -56,7 +56,7 @@ namespace DVLD_Business
         public static clsApplicationType Find(int ApplicationTypeID)
         {
             string ApplicationTypeTitle = string.Empty;
-            float ApplicationTypeFees = 0.0f;
+            decimal ApplicationTypeFees = 0.0m;
 
             bool found = clsApplicationTypeData.GetApplicationTypeInfoByID(ApplicationTypeID, ref ApplicationTypeTitle, ref ApplicationTypeFees);
 

@@ -50,7 +50,7 @@ namespace DVLD.Applications.Application_Types
             _ApplicationType.ApplicationTypeTitle = txtTitle.Text.Trim();
             if (decimal.TryParse(txtFees.Text.Trim(), out decimal fees))
             {
-                _ApplicationType.ApplicationTypeFees = (float)fees;
+                _ApplicationType.ApplicationTypeFees = fees;
                 if (this.ValidateChildren())
                 {
                     if (_ApplicationType.Save())
