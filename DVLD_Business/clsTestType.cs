@@ -26,12 +26,12 @@ namespace DVLD_Business
         public clsTestType.enTestType ID { get; private set; }
         public string TestTypeTitle { get; set; }
         public string TestTypeDescription { get; set; }
-        public float TestTypeFees { get; set; }
+        public decimal TestTypeFees { get; set; }
 
         public clsTestType()
         {
             ID = clsTestType.enTestType.None;
-            TestTypeFees = 0.0f;
+            TestTypeFees = 0.0m;
             TestTypeTitle = string.Empty;
             TestTypeDescription = string.Empty;
 
@@ -42,7 +42,7 @@ namespace DVLD_Business
 
         // New overload that sets TestTypeID so instances returned from Find have correct ID
         private clsTestType(enTestType ID,
-            string TestTypeTitle, string TestTypeDescription, float TestTypeFees)
+            string TestTypeTitle, string TestTypeDescription, decimal TestTypeFees)
         {
             this.ID = ID;
             this.TestTypeTitle = TestTypeTitle;
@@ -69,7 +69,7 @@ namespace DVLD_Business
         {
             string TestTypeTitle = string.Empty;
             string TestTypeDescription = string.Empty;
-            float TestTypeFees = 0.0f;
+            decimal TestTypeFees = 0.0m;
 
             bool found = clsTestTypeData.GetTestTypeInfoByID((int)ID, ref TestTypeTitle, ref TestTypeDescription, ref TestTypeFees);
 

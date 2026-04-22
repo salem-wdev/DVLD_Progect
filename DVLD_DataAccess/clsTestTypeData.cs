@@ -11,7 +11,7 @@ namespace DVLD_DataAccess
     public class clsTestTypeData
     {
         public static bool GetTestTypeInfoByID(int TestTypeID,
-        ref string TestTypeTitle, ref string TestTypeDescription, ref float TestTypeFees)
+        ref string TestTypeTitle, ref string TestTypeDescription, ref decimal TestTypeFees)
         {
             bool IsFound = false;
 
@@ -34,7 +34,7 @@ namespace DVLD_DataAccess
 
                     TestTypeTitle = reader["TestTypeTitle"].ToString();
                     TestTypeDescription = reader["TestTypeDescription"].ToString();
-                    TestTypeFees = Convert.ToSingle(reader["TestTypeFees"]);
+                    TestTypeFees = Convert.ToDecimal(reader["TestTypeFees"]);
 
 
                     reader.Close();
@@ -57,7 +57,7 @@ namespace DVLD_DataAccess
 
 
         public static int AddNewTestType(string TestTypeTitle,
-           string TestTypeDescription, float TestTypeFees)
+           string TestTypeDescription, decimal TestTypeFees)
         {
 
             int TestTypeID = -1;
@@ -99,7 +99,7 @@ namespace DVLD_DataAccess
         }
 
         public static bool UpdateTestType(int TestTypeID,
-        string TestTypeTitle, string TestTypeDescription, float TestTypeFees)
+        string TestTypeTitle, string TestTypeDescription, decimal TestTypeFees)
         {
             int NumberOfEffectedRows = 0;
 

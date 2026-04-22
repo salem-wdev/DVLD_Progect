@@ -91,7 +91,7 @@ namespace DVLD.Tests.Test_Types
                 _TestType.TestTypeDescription = txtDescription.Text.Trim();
                 if (decimal.TryParse(txtFees?.Text.Trim(), out decimal fees))
                 {
-                    _TestType.TestTypeFees = (float)fees;
+                    _TestType.TestTypeFees = fees;
                     if (_TestType.Save())
                     {
                         MessageBox.Show("Test Type updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
