@@ -90,7 +90,7 @@
             this.txtTitle.MaxLength = 50;
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(282, 20);
-            this.txtTitle.TabIndex = 155;
+            this.txtTitle.TabIndex = 0;
             this.txtTitle.Tag = "Title";
             this.txtTitle.Validating += new System.ComponentModel.CancelEventHandler(this.text_Validating);
             // 
@@ -123,7 +123,7 @@
             this.txtFees.MaxLength = 50;
             this.txtFees.Name = "txtFees";
             this.txtFees.Size = new System.Drawing.Size(282, 20);
-            this.txtFees.TabIndex = 156;
+            this.txtFees.TabIndex = 2;
             this.txtFees.Tag = "Fees";
             this.txtFees.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFees_KeyPress);
             this.txtFees.Validating += new System.ComponentModel.CancelEventHandler(this.text_Validating);
@@ -140,7 +140,7 @@
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(282, 98);
-            this.txtDescription.TabIndex = 166;
+            this.txtDescription.TabIndex = 1;
             this.txtDescription.Tag = "Description";
             this.txtDescription.Validating += new System.ComponentModel.CancelEventHandler(this.text_Validating);
             // 
@@ -176,7 +176,7 @@
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(126, 37);
-            this.btnClose.TabIndex = 165;
+            this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -192,7 +192,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(126, 37);
-            this.btnSave.TabIndex = 164;
+            this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
