@@ -94,7 +94,7 @@ namespace DVLD.Tests.Test_Types
             _TestType = clsTestType.Find(_TestTypeID);
             if (_TestType != null)
             {
-                lblTestTypeID.Text = _TestType.ID.ToString();
+                lblTestTypeID.Text = ((int)_TestType.ID).ToString();
                 txtTitle.Text = _TestType.TestTypeTitle;
                 txtDescription.Text = _TestType.TestTypeDescription;
                 txtFees.Text = _TestType.TestTypeFees.ToString();
