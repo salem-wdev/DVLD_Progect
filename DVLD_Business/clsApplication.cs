@@ -35,6 +35,7 @@ namespace DVLD_Business
         public decimal PaidFees { get; set; }
         public int CreatedByUserID { get; set; }
 
+        public clsUser CreatedByUserInfo { get; set; }
         public clsApplicationType ApplicationTypeInfo { get; set; }
         public clsPerson PersonInfo { get; set; }
 
@@ -61,7 +62,7 @@ namespace DVLD_Business
         private clsApplication(int ApplicationID, int ApplicantPersonID,
             DateTime ApplicationDate, enApplicationType ApplicationTypeID,
             enApplicationStatus ApplicationStatus, DateTime LastStatusDate,
-            decimal PaidFees, int CreatedByApplicationID)
+            decimal PaidFees, int CreatedByUserID)
         {
             this.ApplicationID = ApplicationID;
             this.ApplicantPersonID = ApplicantPersonID;
@@ -70,8 +71,9 @@ namespace DVLD_Business
             this.ApplicationStatus = ApplicationStatus;
             this.LastStatusDate = LastStatusDate;
             this.PaidFees = PaidFees;
-            this.CreatedByUserID = CreatedByApplicationID;
+            this.CreatedByUserID = CreatedByUserID;
 
+            this.CreatedByUserInfo = clsUser.Find(CreatedByUserID)
             this.ApplicationTypeInfo = clsApplicationType.Find((int)ApplicationTypeID);
             this.PersonInfo = clsPerson.Find(ApplicantPersonID);
 
