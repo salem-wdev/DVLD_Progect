@@ -15,9 +15,9 @@ namespace DVLD_Business
         public enum enMode { AddNew = 0, Update = 1 }
         public enum enApplicationStatus : byte
         {
-            New = 0,
-            Cancelled = 1,
-            Completed = 2
+            New = 1,
+            Cancelled = 2,
+            Completed = 3
         }
         public enum enApplicationType
         {
@@ -35,6 +35,7 @@ namespace DVLD_Business
         public decimal PaidFees { get; set; }
         public int CreatedByUserID { get; set; }
 
+        public clsUser CreatedByUserInfo { get; set; }
         public clsApplicationType ApplicationTypeInfo { get; set; }
         public clsPerson PersonInfo { get; set; }
 
@@ -50,8 +51,10 @@ namespace DVLD_Business
             this.LastStatusDate = DateTime.MinValue;
             this.PaidFees = 0;
             this.CreatedByUserID = -1;
+
             this.PersonInfo = new clsPerson();
             this.ApplicationTypeInfo = new clsApplicationType();
+            this.CreatedByUserInfo = new clsUser();
 
             Mode = enMode.AddNew;
         }
@@ -61,7 +64,7 @@ namespace DVLD_Business
         private clsApplication(int ApplicationID, int ApplicantPersonID,
             DateTime ApplicationDate, enApplicationType ApplicationTypeID,
             enApplicationStatus ApplicationStatus, DateTime LastStatusDate,
-            decimal PaidFees, int CreatedByApplicationID)
+            decimal PaidFees, int CreatedByUserID)
         {
             this.ApplicationID = ApplicationID;
             this.ApplicantPersonID = ApplicantPersonID;
@@ -70,10 +73,11 @@ namespace DVLD_Business
             this.ApplicationStatus = ApplicationStatus;
             this.LastStatusDate = LastStatusDate;
             this.PaidFees = PaidFees;
-            this.CreatedByUserID = CreatedByApplicationID;
+            this.CreatedByUserID = CreatedByUserID;
 
             this.ApplicationTypeInfo = clsApplicationType.Find((int)ApplicationTypeID);
             this.PersonInfo = clsPerson.Find(ApplicantPersonID);
+            this.CreatedByUserInfo = clsUser.Find(CreatedByUserID);
 
             Mode = enMode.Update;
         }
@@ -86,6 +90,7 @@ namespace DVLD_Business
             //}
             this.ApplicantPersonID = PersonInfo.PersonID;
             this.ApplicationTypeID = (enApplicationType)ApplicationTypeInfo.ApplicationTypeID;
+            this.CreatedByUserID = CreatedByUserInfo.UserID;
 
             this.ApplicationID = clsApplicationData.AddNewApplication(this.ApplicantPersonID,
                 this.ApplicationDate, (int)this.ApplicationTypeID, (byte)this.ApplicationStatus,
@@ -102,6 +107,7 @@ namespace DVLD_Business
             //}
             this.ApplicantPersonID = PersonInfo.PersonID;
             this.ApplicationTypeID = (enApplicationType)ApplicationTypeInfo.ApplicationTypeID;
+            this.CreatedByUserID = CreatedByUserInfo.UserID;
 
             return clsApplicationData.UpdateApplication(this.ApplicationID, this.ApplicantPersonID,
                 this.ApplicationDate, (int)this.ApplicationTypeID, (byte)this.ApplicationStatus,
