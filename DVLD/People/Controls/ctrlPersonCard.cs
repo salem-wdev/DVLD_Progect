@@ -122,6 +122,7 @@ namespace DVLD
             lblAddress.Text = "[????]";
             pbPersonPhoto.Image = Resources.Male_512;
             _Person = null;
+            llEditPersonInfo.Enabled = false;
 
         }
 
@@ -138,13 +139,5 @@ namespace DVLD
             frm.Close();
         }
 
-        private void ctrlPersonCard_Load(object sender, EventArgs e)
-        {
         }
-
-        private void gbPersonInfo_Enter(object sender, EventArgs e)
-        {
-
-        }
-    }
 }

@@ -416,7 +416,6 @@
             this.gbPersonInfo.TabIndex = 0;
             this.gbPersonInfo.TabStop = false;
             this.gbPersonInfo.Text = "Person Information";
-            this.gbPersonInfo.Enter += new System.EventHandler(this.gbPersonInfo_Enter);
             // 
             // ctrlPersonCard
             // 
@@ -425,7 +424,6 @@
             this.Controls.Add(this.gbPersonInfo);
             this.Name = "ctrlPersonCard";
             this.Size = new System.Drawing.Size(837, 286);
-            this.Load += new System.EventHandler(this.ctrlPersonCard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbGender)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

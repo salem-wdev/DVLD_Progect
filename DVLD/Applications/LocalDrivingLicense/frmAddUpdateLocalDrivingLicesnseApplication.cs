@@ -16,7 +16,7 @@ namespace DVLD.Applications.Local_Driving_License
     public partial class frmAddUpdateLocalDrivingLicesnseApplication : Form
     {
 
-
+        private bool _IsFormUpdated = false;
         private enum enMode
         {
             AddNew = 1,
@@ -33,8 +33,6 @@ namespace DVLD.Applications.Local_Driving_License
             InitializeComponent();
             _Mode = enMode.AddNew;
             _Application = new clsApplication();
-            lblTitle.Text = "Add New Local Driving License Application";
-            this.Text = "Add New Local Driving License Application";
         }
 
         public frmAddUpdateLocalDrivingLicesnseApplication(int ApplicationID)
@@ -50,20 +48,28 @@ namespace DVLD.Applications.Local_Driving_License
         /// Logic Methods
         /// </summary>
 
-        private void _ResetDefaultValues()
+        private void _ResetDefaultValues(bool ResetPersonInfo)
         {
             if (_Mode == enMode.AddNew)
             {
-                _ApplicationID = 0;
+                _ApplicationID = -1;
+                _Application = null;
+                _Application = new clsApplication();
                 lblLocalDrivingLicebseApplicationID.Text = "[???]";
                 lblApplicationDate.Text = DateTime.Now.ToShortDateString();
                 cbLicenseClass.SelectedIndex = 0;
                 lblFees.Text = "15";
                 lblCreatedByUser.Text = clsGlobal.CurrentUser.UserName;
-
-                ctrlPersonCardWithFilter1.ctrlPersonCard1.ResetPersonInfo();
+                
+                if(ResetPersonInfo)
+                    ctrlPersonCardWithFilter1.ctrlPersonCard1.ResetPersonInfo();
+                
                 tpApplicationInfo.Enabled = false;
                 btnApplicationInfoNext.Enabled = false;
+
+                lblTitle.Text = "Add New Local Driving License Application";
+                this.Text = "Add New Local Driving License Application";
+
 
             }
             else if (_Mode == enMode.Update)
@@ -73,6 +79,9 @@ namespace DVLD.Applications.Local_Driving_License
                 btnSave.Enabled = true;
 
                 ctrlPersonCardWithFilter1.gbFilters.Enabled = false;
+
+                lblTitle.Text = "Update Local Driving License Application";
+                this.Text = "Update Local Driving License Application";
 
             }
         }
@@ -177,14 +186,19 @@ namespace DVLD.Applications.Local_Driving_License
                     return;
                 }
             }
-                
-            
-            _ResetDefaultValues();
+
+
+            _ResetDefaultValues(true);
         }
 
         private void CtrlPersonCardWithFilter1_OnPersonSelected(int obj)
         {
+            if (_IsFormUpdated)
+            {
+                _Mode = enMode.AddNew;
 
+                _ResetDefaultValues(false);
+            }
 
             if (obj != -1)
             {
@@ -196,6 +210,9 @@ namespace DVLD.Applications.Local_Driving_License
             {
                 btnApplicationInfoNext.Enabled = false;
             }
+
+            _IsFormUpdated = true;
+
         }
 
         private void btnApplicationInfoNext_Click(object sender, EventArgs e)
@@ -221,6 +238,8 @@ namespace DVLD.Applications.Local_Driving_License
             if (_SaveApplication())
             {
                 lblLocalDrivingLicebseApplicationID.Text = _Application.ApplicationID.ToString();
+                lblTitle.Text = "Update Local Driving License Application";
+                this.Text = "Update Local Driving License Application";
                 MessageBox.Show("Application saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
