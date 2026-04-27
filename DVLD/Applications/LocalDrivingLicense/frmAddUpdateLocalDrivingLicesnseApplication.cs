@@ -221,6 +221,8 @@ namespace DVLD.Applications.Local_Driving_License
             if (_SaveApplication())
             {
                 lblLocalDrivingLicebseApplicationID.Text = _Application.ApplicationID.ToString();
+                lblTitle.Text = "Update Local Driving License Application";
+                this.Text = "Update Local Driving License Application";
                 MessageBox.Show("Application saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
