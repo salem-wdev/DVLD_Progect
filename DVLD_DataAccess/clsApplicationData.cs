@@ -403,15 +403,7 @@ namespace DVLD_DataAccess
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string Query = "SELECT [ApplicationID]" +
-                            ",[ApplicantPersonID]" +
-                            ",[ApplicationDate]" +
-                            ",[ApplicationTypeID]" +
-                            ",[ApplicationStatus]" +
-                            ",[LastStatusDate]" +
-                            ",[PaidFees]" +
-                            ",[CreatedByUserID]" +
-                           " FROM [dbo].[Applications]";
+            string Query = "select * from ApplicationsList_View order by ApplicationDate desc";
 
             SqlCommand Command = new SqlCommand(Query, connection);
 
