@@ -403,7 +403,7 @@ namespace DVLD_DataAccess
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string Query = "select * from ApplicationsList_View order by ApplicationDate desc";
+            string Query = "select * from LocalDrivingLicenseApplications_View order by ApplicationDate desc";
 
             SqlCommand Command = new SqlCommand(Query, connection);
 
