@@ -54,6 +54,10 @@ namespace DVLD_Business
             this.CreatedByUserID = CreatedByUserID;
             this.LicenseClassID = LicenseClassID;
             this.LicenseClassInfo = clsLicenseClass.Find(LicenseClassID);
+            this.PersonInfo = clsPerson.Find(ApplicantPersonID);
+            this.ApplicationTypeInfo = clsApplicationType.Find(ApplicationTypeID);
+            this.CreatedByUserInfo = clsUser.Find(CreatedByUserID);
+
             Mode = enMode.Update;
         }
 
