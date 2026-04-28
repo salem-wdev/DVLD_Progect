@@ -97,5 +97,12 @@ namespace DVLD.Applications.LocalDrivingLicense
 
             _RefreshData();
         }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddUpdateLocalDrivingLicesnseApplication frm = new frmAddUpdateLocalDrivingLicesnseApplication((int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value);
+            frm.Show();
+            _RefreshData();
+        }
     }
 }
