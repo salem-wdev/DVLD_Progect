@@ -14,7 +14,7 @@ namespace DVLD.Applications.LocalDrivingLicense
 {
     public partial class frmListLocalDrivingLicesnseApplications : Form
     {
-        DataTable _dtAllApplications;
+        DataTable _dtAllLocalApplications;
 
         public frmListLocalDrivingLicesnseApplications()
         {
@@ -23,9 +23,9 @@ namespace DVLD.Applications.LocalDrivingLicense
 
         private void _RefreshData()
         {
-            _dtAllApplications = clsApplication.GetAllApplications();
-            dgvLocalDrivingLicenseApplications.DataSource = _dtAllApplications;
-            lblRecordsCount.Text = _dtAllApplications.Rows.Count.ToString();
+            _dtAllLocalApplications = clsLocalDrivingLicenseApplication.GetAllLocalDrivingLicenseApplications();
+            dgvLocalDrivingLicenseApplications.DataSource = _dtAllLocalApplications;
+            lblRecordsCount.Text = _dtAllLocalApplications.Rows.Count.ToString();
         }
 
         private void frmListLocalDrivingLicesnseApplications_Load(object sender, EventArgs e)
@@ -68,6 +68,33 @@ namespace DVLD.Applications.LocalDrivingLicense
         {
             frmAddUpdateLocalDrivingLicesnseApplication frm = new frmAddUpdateLocalDrivingLicesnseApplication();
             frm.ShowDialog();
+            _RefreshData();
+        }
+
+        private void DeleteApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure do want to delete this application?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
+
+            int LocalDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value;
+
+            clsLocalDrivingLicenseApplication LocalDrivingLicenseApplication =
+                clsLocalDrivingLicenseApplication.FindByLocalDrivingAppLicenseID(LocalDrivingLicenseApplicationID);
+
+            if (LocalDrivingLicenseApplication != null)
+            {
+                if (LocalDrivingLicenseApplication.Delete())
+                {
+                    MessageBox.Show("Application Deleted Successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //refresh the form again.
+                    frmListLocalDrivingLicesnseApplications_Load(null, null);
+                }
+                else
+                {
+                    MessageBox.Show("Could not delete applicatoin, other data depends on it.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
             _RefreshData();
         }
     }
