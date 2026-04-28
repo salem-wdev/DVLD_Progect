@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -403,7 +404,7 @@ namespace DVLD_DataAccess
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string Query = "select * from LocalDrivingLicenseApplications_View order by ApplicationDate desc";
+            string Query = "select * from ApplicationsList_View order by ApplicationDate desc";
 
             SqlCommand Command = new SqlCommand(Query, connection);
 
