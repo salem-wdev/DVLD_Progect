@@ -119,6 +119,11 @@ namespace DVLD_Business
             return clsApplicationData.DeleteApplication(ApplicationID);
         }
 
+        public bool Delete()
+        {
+                       return clsApplicationData.DeleteApplication(this.ApplicationID);
+        }
+
         public static clsApplication Find(int ApplicationID)
         {
             int ApplicantPersonID = -1;
