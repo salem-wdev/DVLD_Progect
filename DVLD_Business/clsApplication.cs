@@ -26,7 +26,7 @@ namespace DVLD_Business
         };
         public enMode Mode { get; private set; }
 
-        public int ApplicationID { get; private set; }
+        public int ApplicationID { get; set; }
         public int ApplicantPersonID { get; set; }
         public DateTime ApplicationDate { get; set; }
         public enApplicationType ApplicationTypeID { get; set; }
