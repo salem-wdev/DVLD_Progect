@@ -82,6 +82,24 @@ namespace DVLD_Business
             Mode = enMode.Update;
         }
 
+        protected clsApplication(clsApplication BaseApplication)
+        {
+            this.ApplicationID = BaseApplication.ApplicationID;
+            this.ApplicantPersonID = BaseApplication.ApplicantPersonID;
+            this.ApplicationDate = BaseApplication.ApplicationDate;
+            this.ApplicationTypeID = BaseApplication.ApplicationTypeID;
+            this.ApplicationStatus = BaseApplication.ApplicationStatus;
+            this.LastStatusDate = BaseApplication.LastStatusDate;
+            this.PaidFees = BaseApplication.PaidFees;
+            this.CreatedByUserID = BaseApplication.CreatedByUserID;
+
+            this.ApplicationTypeInfo = BaseApplication.ApplicationTypeInfo;
+            this.PersonInfo = BaseApplication.PersonInfo;
+            this.CreatedByUserInfo = BaseApplication.CreatedByUserInfo;
+
+            Mode = enMode.Update;
+        }
+
         private bool _AddNewApplication()
         {
             //if (!_Person.Save()) // Ensure the person is saved and has a valid PersonID
@@ -119,7 +137,7 @@ namespace DVLD_Business
             return clsApplicationData.DeleteApplication(ApplicationID);
         }
 
-        public bool Delete()
+        public virtual bool Delete()
         {
                        return clsApplicationData.DeleteApplication(this.ApplicationID);
         }
@@ -184,7 +202,7 @@ namespace DVLD_Business
             return clsApplicationData.UpdateStatus(ApplicationID, (byte)enApplicationStatus.Completed);
         }
 
-        public bool Save()
+        public virtual bool Save()
         {
             switch (Mode)
             {

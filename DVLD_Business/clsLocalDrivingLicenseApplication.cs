@@ -11,9 +11,7 @@ namespace DVLD_Business
 {
     public class clsLocalDrivingLicenseApplication : clsApplication
     {
-        public enum enMode { AddNew = 0, Update = 1 };
-        public enMode Mode = enMode.AddNew;
-
+        
         public int LocalDrivingLicenseApplicationID { set; get; }
         public int LicenseClassID { set; get; }
         public clsLicenseClass LicenseClassInfo;
@@ -21,7 +19,7 @@ namespace DVLD_Business
         {
             get
             {
-                return clsPerson.Find(ApplicantPersonID).FullName;
+                return PersonInfo.FullName;
             }
 
         }
@@ -37,27 +35,14 @@ namespace DVLD_Business
 
         }
 
-        private clsLocalDrivingLicenseApplication(int LocalDrivingLicenseApplicationID, int ApplicationID, int ApplicantPersonID,
-            DateTime ApplicationDate, int ApplicationTypeID,
-             enApplicationStatus ApplicationStatus, DateTime LastStatusDate,
-             decimal PaidFees, int CreatedByUserID, int LicenseClassID)
+        private clsLocalDrivingLicenseApplication(int LocalDrivingLicenseApplicationID, int LicenseClassID, clsApplication BaseApplication)
+            : base(BaseApplication)
 
         {
             this.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID; ;
-            this.ApplicationID = ApplicationID;
-            this.ApplicantPersonID = ApplicantPersonID;
-            this.ApplicationDate = ApplicationDate;
-            this.ApplicationTypeID = (enApplicationType)ApplicationTypeID;
-            this.ApplicationStatus = ApplicationStatus;
-            this.LastStatusDate = LastStatusDate;
-            this.PaidFees = PaidFees;
-            this.CreatedByUserID = CreatedByUserID;
             this.LicenseClassID = LicenseClassID;
             this.LicenseClassInfo = clsLicenseClass.Find(LicenseClassID);
-            this.PersonInfo = clsPerson.Find(ApplicantPersonID);
-            this.ApplicationTypeInfo = clsApplicationType.Find(ApplicationTypeID);
-            this.CreatedByUserInfo = clsUser.Find(CreatedByUserID);
-
+            
             Mode = enMode.Update;
         }
 
@@ -94,15 +79,11 @@ namespace DVLD_Business
             if (IsFound)
             {
                 //now we find the base application
-                clsApplication Application = clsApplication.Find(ApplicationID);
+                clsApplication BaseApplication = clsApplication.Find(ApplicationID);
 
                 //we return new object of that person with the right data
                 return new clsLocalDrivingLicenseApplication(
-                    LocalDrivingLicenseApplicationID, Application.ApplicationID,
-                    Application.ApplicantPersonID,
-                                     Application.ApplicationDate, (int)Application.ApplicationTypeID,
-                                    (enApplicationStatus)Application.ApplicationStatus, Application.LastStatusDate,
-                                     Application.PaidFees, Application.CreatedByUserID, LicenseClassID);
+                    LocalDrivingLicenseApplicationID, LicenseClassID, BaseApplication);
             }
             else
                 return null;
@@ -122,15 +103,11 @@ namespace DVLD_Business
             if (IsFound)
             {
                 //now we find the base application
-                clsApplication Application = clsApplication.Find(ApplicationID);
+                clsApplication BaseApplication = clsApplication.Find(ApplicationID);
 
                 //we return new object of that person with the right data
                 return new clsLocalDrivingLicenseApplication(
-                    LocalDrivingLicenseApplicationID, Application.ApplicationID,
-                    Application.ApplicantPersonID,
-                                     Application.ApplicationDate, (int)Application.ApplicationTypeID,
-                                    (enApplicationStatus)Application.ApplicationStatus, Application.LastStatusDate,
-                                     Application.PaidFees, Application.CreatedByUserID, LicenseClassID);
+                    LocalDrivingLicenseApplicationID, LicenseClassID, BaseApplication);
             }
             else
                 return null;
@@ -138,12 +115,11 @@ namespace DVLD_Business
 
         }
 
-        public bool Save()
+        public override bool Save()
         {
 
             //Because of inheritance first we call the save method in the base class,
             //it will take care of adding all information to the application table.
-            base.Mode = (clsApplication.enMode)Mode;
             if (!base.Save())
                 return false;
 
@@ -177,7 +153,7 @@ namespace DVLD_Business
             return clsLocalDrivingLicenseApplicationData.GetAllLocalDrivingLicenseApplications();
         }
 
-        public bool Delete()
+        public override bool Delete()
         {
             bool IsLocalDrivingApplicationDeleted = false;
             bool IsBaseApplicationDeleted = false;
