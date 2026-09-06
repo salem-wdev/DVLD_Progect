@@ -885,7 +885,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="packages\ConfigureAwaitEnforcer.2.0.0\analyzers\dotnet\cs\ConfigureAwaitEnforcer.dll" />
     <Analyzer Include="packages\Microsoft.VisualStudio.Threading.Analyzers.18.7.23\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.CodeFixes.dll" />
     <Analyzer Include="packages\Microsoft.VisualStudio.Threading.Analyzers.18.7.23\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.CSharp.dll" />
     <Analyzer Include="packages\Microsoft.VisualStudio.Threading.Analyzers.18.7.23\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.dll" />
