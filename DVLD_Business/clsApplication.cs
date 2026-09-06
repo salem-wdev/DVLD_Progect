@@ -186,7 +186,7 @@ namespace DVLD_Business
 
         private async void _GetApplicationTypeInfoAsync()
         {
-            _ApplicationTypeInfo = await clsApplicationType.FindAsync((int)ApplicationTypeID).ConfigureAwait(false);
+            _ApplicationTypeInfo = await clsApplicationType.FindAsync((int)ApplicationTypeID);
         }
 
         protected async Task<bool> _AddNewApplicationAsync()
@@ -228,7 +228,7 @@ namespace DVLD_Business
 
         private async Task _FindPersonAsync()
         {
-            _PersonInfo = await clsPerson.FindAsync(ApplicantPersonID).ConfigureAwait(false);
+            _PersonInfo = await clsPerson.FindAsync(ApplicantPersonID);
         }
 
         public static async Task<bool> DeleteAsync(int ApplicationID)

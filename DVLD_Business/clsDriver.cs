@@ -72,7 +72,7 @@ namespace DVLD_Business
         {
             //call DataAccess Layer 
 
-            this.DriverID = await clsDriverData.AddNewDriverAsync(PersonID, CreatedByUserID).ConfigureAwait(false);
+            this.DriverID = await clsDriverData.AddNewDriverAsync(PersonID, CreatedByUserID);
             this.CreatedDate = clsUtilData.GetServerDate();
 
             if (this.DriverID != -1)
@@ -92,13 +92,13 @@ namespace DVLD_Business
 
         private async void _FindPerson()
         {
-            _PersonInfo = await clsPerson.FindAsync(PersonID).ConfigureAwait(false);
+            _PersonInfo = await clsPerson.FindAsync(PersonID);
         }
 
 
         public static async Task<clsDriver> FindByDriverIDAsync(int DriverID)
         {
-            var driverInfo = await clsDriverData.GetDriverInfoByDriverIDAsync(DriverID).ConfigureAwait(false);
+            var driverInfo = await clsDriverData.GetDriverInfoByDriverIDAsync(DriverID);
 
             if (driverInfo.IsFound)
                 return new clsDriver(DriverID, driverInfo.PersonID, driverInfo.CreatedByUserID, driverInfo.CreatedDate);
@@ -112,7 +112,7 @@ namespace DVLD_Business
             if (PersonID == null || PersonID <= 0)
                 return null;
 
-            var DriverInfo = await clsDriverData.GetDriverInfoByPersonIDAsync(PersonID).ConfigureAwait(false);
+            var DriverInfo = await clsDriverData.GetDriverInfoByPersonIDAsync(PersonID);
 
             if (DriverInfo.IsFound)
 
@@ -124,13 +124,13 @@ namespace DVLD_Business
 
         public static async Task<DataTable> GetAllDriversAsync()
         {
-            return await clsDriverData.GetAllDriversAsync().ConfigureAwait(false);
+            return await clsDriverData.GetAllDriversAsync();
 
         }
 
         public static async Task<DataTable> GetLicensesAsync(int DriverID)
         {
-            return await clsLicenseData.GetDriverLicensesAsync(DriverID).ConfigureAwait(false);
+            return await clsLicenseData.GetDriverLicensesAsync(DriverID);
         }
 
         public static async Task<DataTable> GetInternationalLicensesAsync(int DriverID)
@@ -140,12 +140,12 @@ namespace DVLD_Business
 
         public async Task<bool> SaveAsync()
         {
-           return await _saveDictionary[Mode]().ConfigureAwait(false);
+           return await _saveDictionary[Mode]();
         }
 
         public static async Task<int> GetLastLicenseIDAsync(int DriverID, int LicenseClassID)
         {
-            return await clsLicenseData.GetLastLicenseIDByDriverIDAsync(DriverID,LicenseClassID).ConfigureAwait(false);
+            return await clsLicenseData.GetLastLicenseIDByDriverIDAsync(DriverID,LicenseClassID);
         }
 
         private static async Task<clsDriver> _PrepareDriverAsync(int PersonID, int CreatedByUserID)
@@ -169,7 +169,7 @@ namespace DVLD_Business
 
             if(driver != null)
             {
-                if(await driver.SaveAsync().ConfigureAwait(false))
+                if(await driver.SaveAsync())
                 {
                     return driver;
                 }

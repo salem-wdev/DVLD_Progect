@@ -107,7 +107,7 @@ namespace DVLD_Business.Users
 
         private async void _FindPerson()
         {
-            _Person = await clsPerson.FindAsync(PersonID).ConfigureAwait(false);
+            _Person = await clsPerson.FindAsync(PersonID);
         }
 
         public static async Task<bool> DeleteAsync(int UserID)

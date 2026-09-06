@@ -255,7 +255,7 @@ namespace DVLD_Business
         public static async Task<bool> DeleteAsync(int PersonID)
         {
             string ImagePath = "";
-            ImagePath = (await FindAsync(PersonID).ConfigureAwait(false))?.ImagePath;
+            ImagePath = (await FindAsync(PersonID))?.ImagePath;
             if (await clsPersonData.DeletePersonAsync(PersonID))
             {
                 if (!string.IsNullOrWhiteSpace(ImagePath))
@@ -272,7 +272,7 @@ namespace DVLD_Business
             if (PersonID == null)
                 return null;
 
-            var PersonInfo = await clsPersonData.GetPersonInfoByIDAsync(PersonID).ConfigureAwait(false);
+            var PersonInfo = await clsPersonData.GetPersonInfoByIDAsync(PersonID);
 
             if (PersonInfo.IsFound)
             {
