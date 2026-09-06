@@ -72,7 +72,7 @@ namespace DVLD_Infrastructure.Storage
                 using (var sourceStream = new FileStream(sourceFile, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, useAsync: true))
                 using (var destinationStream = new FileStream(destinationFile, FileMode.CreateNew, FileAccess.Write, FileShare.None, bufferSize: 4096, useAsync: true))
                 {
-                    await sourceStream.CopyToAsync(destinationStream);
+                    await sourceStream.CopyToAsync(destinationStream).ConfigureAwait(false);
                 }
             }
             catch (Exception ex)
