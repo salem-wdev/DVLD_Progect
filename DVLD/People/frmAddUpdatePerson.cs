@@ -64,7 +64,7 @@ namespace DVLD.People.Forms
 
         private async void _FindPerson()
         {
-            _Person = await clsPerson.FindAsync(_PersonID).ConfigureAwait(false);
+            _Person = await clsPerson.FindAsync(_PersonID);
         }
 
 
