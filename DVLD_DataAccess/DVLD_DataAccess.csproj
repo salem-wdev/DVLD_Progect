@@ -109,6 +109,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Analyzer Include="..\DVLD\packages\ConfigureAwaitEnforcer.2.0.0\analyzers\dotnet\cs\ConfigureAwaitEnforcer.dll" />
     <Analyzer Include="..\DVLD\packages\Microsoft.VisualStudio.Threading.Analyzers.18.7.23\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\DVLD\packages\Microsoft.VisualStudio.Threading.Analyzers.18.7.23\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.CSharp.dll" />
     <Analyzer Include="..\DVLD\packages\Microsoft.VisualStudio.Threading.Analyzers.18.7.23\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.dll" />
