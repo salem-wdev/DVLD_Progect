@@ -16,16 +16,13 @@ namespace DVLD_Business
         private Dictionary<enMode, Func<Task<bool>>> _saveDictionary;
 
         private clsPerson _PersonInfo = null;
-        public clsPerson PersonInfo
+        public async Task<clsPerson> GetPersonInfoAsync()
         {
-            get
+            if (_PersonInfo == null && this.PersonID != -1)
             {
-                if (_PersonInfo == null && this.PersonID != -1)
-                {
-                    _FindPerson();
-                }
-                return _PersonInfo;
+                _PersonInfo = await clsPerson.FindAsync(PersonID);
             }
+            return _PersonInfo;
         }
 
         public int DriverID { private set; get; }
@@ -89,12 +86,6 @@ namespace DVLD_Business
 
             return await clsDriverData.UpdateDriverAsync(this.DriverID, this.PersonID, this.CreatedByUserID);
         }
-
-        private async void _FindPerson()
-        {
-            _PersonInfo = await clsPerson.FindAsync(PersonID);
-        }
-
 
         public static async Task<clsDriver> FindByDriverIDAsync(int DriverID)
         {

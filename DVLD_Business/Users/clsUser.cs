@@ -23,16 +23,13 @@ namespace DVLD_Business.Users
 
         private clsPerson _Person;
 
-        public clsPerson PersonInfo
+        public async Task<clsPerson> GetPersonInfoAsync()
         {
-            get
+            if (_Person == null && PersonID != -1)
             {
-                if (_Person == null && PersonID != -1)
-                {
-                    _FindPerson();
-                }
-                return _Person;
+                _Person = await clsPerson.FindAsync(PersonID);
             }
+            return _Person;
         }
         public string UserName { get; private set; }
         public string Password { get; private set; }
@@ -103,11 +100,6 @@ namespace DVLD_Business.Users
 
             return await clsUserData.UpdateUserAsync(this.UserID, this.UserName,
         this.Password, this.IsActive);
-        }
-
-        private async void _FindPerson()
-        {
-            _Person = await clsPerson.FindAsync(PersonID);
         }
 
         public static async Task<bool> DeleteAsync(int UserID)

@@ -45,17 +45,14 @@ namespace DVLD_Business
         // Holds the cached driver information; backing field for the lazy-loaded DriverInfo property.
         private clsDriver _DriverInfo = null;
 
-        public clsDriver DriverInfo
+        public async Task<clsDriver> GetDriverInfoAsync()
         {
-            get
+            // Database query is deferred until this property is explicitly requested by the UI or other layers.
+            if (_DriverInfo == null && this.DriverID != -1)
             {
-                // Database query is deferred until this property is explicitly requested by the UI or other layers.
-                if (_DriverInfo == null && this.DriverID != -1)
-                {
-                    _GetDriverInfo();
-                }
-                return _DriverInfo;
+                _DriverInfo = await clsDriver.FindByDriverIDAsync(this.DriverID);
             }
+            return _DriverInfo;
         }
 
         public int InternationalLicenseID {  get; private set; }  
@@ -308,7 +305,7 @@ namespace DVLD_Business
             DateTime IssueDate = clsBusinessSettings.GetServerDateTime();
 
             clsApplication application = await GetNewApplicationobjectAsync(CreatedByUser,
-                LocalLicense.DriverInfo.PersonID, enApplicationType.NewInternationalLicense);
+                LocalLicense.GetDriverInfoAsync.PersonID, enApplicationType.NewInternationalLicense);
 
             if(application == null)
             {
@@ -351,13 +348,5 @@ namespace DVLD_Business
             InternationalLicenseUpdated?.Invoke(this, e);
         }
 
-        private async void _GetDriverInfo()
-        {
-            // Database query is deferred until this property is explicitly requested by the UI or other layers.
-            if (_DriverInfo == null && this.DriverID != -1)
-            {
-                _DriverInfo = await clsDriver.FindByDriverIDAsync(this.DriverID);
-            }
-        }
     }
 }

@@ -70,7 +70,7 @@ namespace DVLD_Business
         public int CreatedByUserID { private set; get; }
 
         private clsUser _CreatedByUserInfo = null;
-        public async Task<clsUser> CreatedByUserInfoAsync()
+        public async Task<clsUser> GetCreatedByUserInfoAsync()
         {
             if (_CreatedByUserInfo == null && CreatedByUserID != -1)
             {
@@ -85,7 +85,7 @@ namespace DVLD_Business
         public int ReleasedByUserID { private set; get; }
 
         private clsUser _ReleasedByUserInfo = null;
-        public async Task<clsUser> ReleasedByUserInfoAsync()
+        public async Task<clsUser> GetReleasedByUserInfoAsync()
         {
             if (_ReleasedByUserInfo == null && ReleasedByUserID != -1)
             {
@@ -96,16 +96,13 @@ namespace DVLD_Business
 
         public int ReleaseApplicationID { private set; get; }
         private clsApplication _ReleaseApplicationInfo = null;
-        public clsApplication ReleaseApplicationInfo
+        public async Task<clsApplication> GetReleaseApplicationInfoAsync()
         {
-            get
+            if (_ReleaseApplicationInfo == null && ReleaseApplicationID != -1)
             {
-                if (_ReleaseApplicationInfo == null && ReleaseApplicationID != -1)
-                {
-                    _LoadReleaseApplicationInfo();
-                }
-                return _ReleaseApplicationInfo;
+                _ReleaseApplicationInfo = await clsApplication.FindAsync(this.ReleaseApplicationID);
             }
+            return _ReleaseApplicationInfo;
         }
 
         private clsDetainedLicense(int LicenseID, DateTime DetainDate, float FineFees, int CreatedByUserID)
@@ -155,11 +152,6 @@ namespace DVLD_Business
             };
 
             Mode = enMode.Update;
-        }
-
-        private async void _LoadReleaseApplicationInfo()
-        {
-            _ReleaseApplicationInfo = await clsApplication.FindAsync(this.ReleaseApplicationID);
         }
 
         private async Task<bool> _AddNewDetainedLicenseAsync()
@@ -251,14 +243,14 @@ namespace DVLD_Business
             }
 
             clsLicense license = await clsLicense.FindAsync(LicenseID);
-            if (license == null || license.DriverInfo == null)
+            if (license == null || license.GetDriverInfoAsync == null)
             {
                 return null;
             }
 
             clsApplication ReleaseApplication
                 = await clsApplication.GetNewApplicationAsync(ReleasedByUserID,
-                license.DriverInfo.PersonID, clsApplication.enApplicationType.ReleaseDetainedDrivingLicense);
+                license.GetDriverInfoAsync.PersonID, clsApplication.enApplicationType.ReleaseDetainedDrivingLicense);
 
             if (ReleaseApplication == null)
             {
@@ -284,7 +276,7 @@ namespace DVLD_Business
                 DetainedLicense.ReleaseApplicationID = ReleaseApplication.ApplicationID;
                 DetainedLicense.ReleasedByUserID = ReleasedByUserID;
                 DetainedLicense.ReleaseDate = ReleaseDate;
-                DetainedLicense?.ReleaseApplicationInfo?.SetCompleteAsync();
+                DetainedLicense?.GetReleaseApplicationInfoAsync?.SetCompleteAsync();
 
                 DetainedLicense?.OnLicenseReleased(new LicenseReleasedEventArgs(DetainedLicense.DetainID, DetainedLicense.LicenseID,
                     DetainedLicense.ReleaseDate, DetainedLicense.ReleasedByUserID, DetainedLicense.ReleaseApplicationID,

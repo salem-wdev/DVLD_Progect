@@ -53,27 +53,21 @@ namespace DVLD_Business
             }
             return _CreatedByUserInfo;
         }
-        public clsApplicationType ApplicationTypeInfo
+        public async Task<clsApplicationType> GetApplicationTypeInfoAsync()
         {
-            get
+            if (_ApplicationTypeInfo == null && (int)ApplicationTypeID > 0)
             {
-                if (_ApplicationTypeInfo == null && (int)ApplicationTypeID > 0)
-                {
-                    _GetApplicationTypeInfoAsync();
-                }
-                return _ApplicationTypeInfo;
+                _ApplicationTypeInfo = await clsApplicationType.FindAsync((int)ApplicationTypeID);
             }
+            return _ApplicationTypeInfo;
         }
-        public clsPerson PersonInfo
+        public async Task<clsPerson> GetPersonInfoAsync()
         {
-            get
+            if (_PersonInfo == null && ApplicantPersonID != -1)
             {
-                if (_PersonInfo == null && ApplicantPersonID != -1)
-                {
-                     _ = _FindPersonAsync();
-                }
-                return _PersonInfo;
+                _PersonInfo = await clsPerson.FindAsync(ApplicantPersonID);
             }
+            return _PersonInfo;
         }
         public DateTime ApplicationDate
         {
@@ -184,10 +178,6 @@ namespace DVLD_Business
             Mode = enMode.Update;
         }
 
-        private async void _GetApplicationTypeInfoAsync()
-        {
-            _ApplicationTypeInfo = await clsApplicationType.FindAsync((int)ApplicationTypeID);
-        }
 
         protected async Task<bool> _AddNewApplicationAsync()
         {
@@ -226,10 +216,6 @@ namespace DVLD_Business
                 this.PaidFees, this.CreatedByUserID);
         }
 
-        private async Task _FindPersonAsync()
-        {
-            _PersonInfo = await clsPerson.FindAsync(ApplicantPersonID);
-        }
 
         public static async Task<bool> DeleteAsync(int ApplicationID)
         {
